@@ -122,7 +122,7 @@
 
 
 \usepackage{orcidlink}
-\author{Yijun Yuan\orcidlink{0000-0001-6571-6980}}
+\author{Yijun Yuan\textsuperscript{\orcidlink{0000-0001-6571-6980}} 2022311357}
 \address{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
 \email{941201yuan@gmail.com}
 \begin{document}
@@ -138,40 +138,71 @@ The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called f
 
 In this notes, we do not need the full power of sAPF extensions, so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen: if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as the Galois group, then it is sAPF.}.
 \begin{definition}
-  Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
-  where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
+	Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
+	where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
 \end{definition}
 \begin{theorem}[{\cite{wintenberger_corps_1983}}]\leavevmode
-  \begin{enumerate}
-    \item By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
-          $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
-    \item The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
-    \item The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
-    \item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
-  \end{enumerate}
+	\begin{enumerate}
+		\item By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+		      $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
+		\item The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
+		\item The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
+		\item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
+	\end{enumerate}
 \end{theorem}
 \begin{definition}
-  Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
+	Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
 \end{definition}
+\begin{remark}
+	With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bbC_p$.
+\end{remark}
 Then one has
 \begin{theorem}\leavevmode
-  \begin{enumerate}
-    \item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
-    \item $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
-  \end{enumerate}
+	\begin{enumerate}
+		\item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
+		\item $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
+	\end{enumerate}
 \end{theorem}
 
 Now we can lift these period rings to characteristic $0$:
 \begin{definition}
-  Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
+	Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
 \end{definition}
 
-By the functoriality of Witt vectors and Cohen rings, we have the following properties:
-\begin{lemma}\leavevmode
-  \begin{enumerate}
-    \item
-  \end{enumerate}
-\end{lemma}
+We have the following properties of these period rings of characteristic $0$:
+\begin{proposition}\leavevmode
+	\begin{enumerate}
+		\item The field $\bfB_K$ is a discrete-valued field with valuation ring $\bfA_K$ and residue field $\bfE_K$.
+		\item The field $\bfB$ is the completed maximal unramified extension of $\bfB_{\bbQ_p}$, with ring of integer $\bfA$ and residue field $\bfE$.
+		\item One has
+		      $$\bfA_{\bbQ_p}=\widehat{\bbZ_p\llbracket\pi\rrbracket[\frac{1}{\pi}]},$$
+		      where $\pi\coloneqq [\varepsilon]-1$ and the hat is taking the $p$-adic completion.
+		\item The action of $\scrG_{\bbQ_p}$ on $\bfA_{\bbQ_p}$ is given by
+		      $$g\cdot\pi=(1+\pi)^{\chi(g)}-1,$$ where $\chi:\scrG_{\bbQ_p}\lto \bbZ_p^\times$ is the cyclotomic character. The action of the Frobenius map $\varphi$ on $\bfA_{\bbQ_p}$ is given by
+		      $$\varphi(\pi)=(1+\pi)^p-1.$$
+		\item One has $\bfA^{H_K}=\bfA_K$, $\bfB^{H_K}=\bfB_K$.
+		\item The field $\widetilde{\bfB}$ (resp. $\widetilde{\bfB}_K$) is the completed $\varphi$-perfection of $\bfB$ (resp. $\bfB_K$).
+	\end{enumerate}
+\end{proposition}
+\subsection{\'Etale $(\varphi,\Gamma)$-modules and Fontaine's equivalence of categories}
+\begin{definition}
+	\begin{enumerate}
+		\item A $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) is a finitely generated $\bfA_K$-module (resp. $\bfB_K$-vector space) equipped with a semi-linear continuous action of the Frobenius map $\varphi$.
+		\item A $\varphi$-module $D$ over $\bfA_K$ is called \'etale if $\varphi(D)$ generates $D$ as an $\bfA_K$-module.
+		\item A $\varphi$-module $D$ over $\bfB_K$ is called \'etale if it has an $\bfA_K$-lattice which is \'etale.
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	The functor $\calD$:
+	$$\{\text{finite dimensional }\bbZ_p\text{-representations of }\scrG_K\}\xlto{\calD} \{\text{\'etale } \varphi\text{-modules over }\bfA_K\},$$
+	$$V\longmapsto (\bfA\otimes_{\bbZ_p} V)^{H_K};$$
+	is an equivalence of categories, with quasi-inverse $\calV$ given by
+	$$\{\text{\'etale } \varphi\text{-modules over }\bfA_K\}\xlto{\calV} \{\text{finite dimensional }\bbZ_p\text{-representations of }\scrG_K\},$$
+	$$D\longmapsto (\bfA\otimes_{\bfA_K} D)^{\varphi=1}.$$
+\end{theorem}
+\begin{remark}
+	By replacing $\bfA$ (resp. $\bfA_K$) by $\bfB$ (resp. $\bfB_K$), one can also define the equivalence of categories between finite-dimensional $\bbQ_p$-representations of $\scrG_K$ and \'etale $\varphi$-modules over $\bfB_K$.
+\end{remark}
 \section{Galois cohomology and Iwasawa cohomology}
 \section{Explicit reciprocity law}
 \end{document}
