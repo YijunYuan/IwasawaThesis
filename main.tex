@@ -1,0 +1,177 @@
+% !TEX root
+% !TEX program = pdflatex
+% !BIB program = biber
+
+\pdfcompresslevel 0
+\pdfobjcompresslevel 0
+%\special{dvipdfmx:config z 0}
+\documentclass[a4paper,oneside]{amsart}
+\usepackage[utf8]{inputenc}
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% * Fonts, symbols and notations
+\input{notations.tex}
+%\usepackage{standalone}
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% * Reference and hyperlink
+\usepackage[pdfencoding=auto,psdextra]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\Crefname{conjecture}{Conjecture}{Conjectures}
+\Crefname{lemma}{Lemma}{Lemmas}
+\Crefname{definition}{Definition}{Definitions}
+\Crefname{remark}{Remark}{Remarks}
+\Crefname{proposition}{Proposition}{Propositions}
+\Crefname{corollary}{Corollary}{Corollarys}
+\Crefname{equation}{}{}
+\Crefname{item}{}{}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+\Crefname{example}{Example}{Examples}
+\Crefname{proof}{Proof}{Proofs}
+\Crefname{condition}{Condition}{Conditions}
+\Crefname{question}{Question}{Questions}
+\usepackage[url=false,backend=biber,style=ext-alphabetic,hyperref=true,giveninits=true,maxbibnames=99]{biblatex}
+\addbibresource{references.bib}
+\usepackage{xcolor}
+\makeatletter
+\pdfstringdefDisableCommands{\let\HyPsd@CatcodeWarning\@gobble}
+\makeatother
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% * Environments related
+%\begingroup
+\usepackage{enumitem,float,algorithm,algpseudocode,cases,adjustbox}
+\usepackage[all]{xy}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{question}[theorem]{Question}
+\renewcommand{\theequation}{\alph{equation}}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\newlist{propenum}{enumerate}{1}
+\setlist[propenum]{label=(\arabic*), ref=\theproposition~(\arabic*)}
+\crefalias{propenumi}{proposition}
+\newlist{lemenum}{enumerate}{1}
+\setlist[lemenum]{label=(\arabic*), ref=\thelemma~(\arabic*)}
+\crefalias{lemenumi}{lemma}
+\newlist{thmenum}{enumerate}{1}
+\setlist[thmenum]{label=(\arabic*), ref=\thetheorem~(\arabic*)}
+\crefalias{thmenumi}{theorem}
+\Crefformat{enumi}{#2\textup{(#1)}#3}
+\usepackage{comment}
+%\usepackage{float,algorithm,algpseudocode}
+\algnewcommand\algorithmicinput{\textbf{INPUT:}}
+\algnewcommand\INPUT{\item[\algorithmicinput]}
+\algnewcommand\algorithmicoutput{\textbf{OUTPUT:}}
+\algnewcommand\OUTPUT{\item[\algorithmicoutput]}
+%\endgroup
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% * Typesetting
+\makeatletter
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima
+      \ifcase #1
+       \or\or \hskip 1em \or \hskip 2em \else \hskip 3em \fi%
+      #6\nobreak\relax
+    \hfill\hbox to\@pnumwidth{\@tocpagenum{#7}}\par% <---- \dotfill -> \hfill
+    \nobreak
+    \endgroup
+  \fi}
+\makeatother
+\usepackage{microtype}
+\usepackage{geometry}
+\allowdisplaybreaks
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% * Temporary
+\usepackage{CJKutf8}
+\newcommand{\Chinese}[1]{\begin{CJK*}{UTF8}{gbsn}#1\end{CJK*}}
+%\usepackage[scheme=plain]{ctex}
+%\usepackage[notcite]{showkeys}
+
+\usepackage{todonotes}
+%\usepackage[tikz]{bclogo}
+% *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%TO BE REMOVED FROM THE FINAL
+\usepackage[color,notcite, notref]{showkeys} % print labels in the pdf
+\definecolor{labelkey}{rgb}{1,0,0}
+%\lineskip .2 cm %% for readability
+%\parskip 0.2cm
+\newcommand{\shanwen}[1]{\textcolor{magenta}{[Shanwen: #1]}}
+\newcommand{\yijun}[1]{\textcolor{blue}{[Yijun: #1]}}
+\makeatletter
+  \SK@def\Cref#1{\SK@\SK@@ref{#1}\SK@Cref{#1}}%
+\makeatother
+
+\title{Iwasawa cohomology of $p$-adic Galois representations and explicit reciprocity law}
+
+
+\usepackage{orcidlink}
+\author{Yijun Yuan\orcidlink{0000-0001-6571-6980}}
+\address{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
+\email{941201yuan@gmail.com}
+\begin{document}
+\maketitle
+Throughout this notes, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\opn{cycl}}=K(\zeta_{p^n})$, $K^{\opn{cycl}}=\bigcup_n K_n$ be the cyclotomic extension over $K$.
+
+For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Galois group of $F$. In particular, denote by $H_K=\scrG_{K^{\opn{cycl}}}$ and $\Gamma_K=\scrG_K/H_K=\opn{Gal}(K^{\opn{cycl}}/K)$.
+\section{Theory of $(\varphi,\Gamma)$-modules}
+The theory of \'etale $(\varphi,\Gamma)$-modules, which was introduced by Fontaine in the early 1990's, is used to study the $p$-adic Galois representations. These are modules over certain period rings, equipped with the semi-linear action of a Frobenius map and $\Gamma_K$ which commutes with each other.
+
+\subsection{The field of norms and its lift to characteristic $0$}
+The construction of $(\varphi,\Gamma)$-modules depends deeply on the so called field of norms (les corps des norms), which was introduced by Fontaine and Wintenberger in 1980's. It is a wide family of fields of formal Laurent series in characteristic $p$, whose absolute Galois groups are canonically isomorphic to those of the so called strictly arithmetically profinite (sAPF) extensions. This theory also motivates Scholze's thoery of perfectoid spaces.
+
+In this notes, we do not need the full power of sAPF extensions, so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ with keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen: if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as the Galois group, then it is sAPF.}.
+\begin{definition}
+    Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
+    where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
+\end{definition}
+\begin{theorem}[{\cite{wintenberger_corps_1983}}]\leavevmode
+\begin{enumerate}
+    \item By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+    $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
+    \item The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
+    \item The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
+    \item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
+\end{enumerate}
+\end{theorem}
+\begin{definition}
+    Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
+\end{definition}
+Then one has
+\begin{theorem}\leavevmode
+    \begin{enumerate}
+        \item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
+        \item $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
+    \end{enumerate}
+\end{theorem}
+
+Now we can lift these period rings to characteristic $0$:
+\begin{definition}
+    Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
+\end{definition}
+
+By the functoriality of Witt vectors and Cohen rings, we have the following properties:
+\begin{lemma}\leavevmode
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+\end{lemma}
+\section{Galois cohomology and Iwasawa cohomology}
+\section{Explicit reciprocity law}
+\end{document}

@@ -1,0 +1,87 @@
+\let\opn\operatorname
+
+\usepackage{mathtools,amssymb,textcomp,extarrows,bm,mleftright,graphicx,stmaryrd,scalerel}
+\mleftright
+
+\makeatletter
+\AtBeginDocument{%
+ \let\glb@currsize\relax
+}
+\makeatother
+
+\usepackage{iftex}
+\ifpdftex
+\usepackage[T1]{fontenc}
+\pdfmapline{+tamafont < tamafont.ttf <T1-WGL4.enc}
+\DeclareMathAlphabet{\mathtama}{T1}{tamafont}{m}{n}
+\newcommand{\tama}{\mathtama{0}}
+\fi
+\ifxetex
+\usepackage{fontspec}
+\newfontfamily{\tamafont}{tamafont}[
+  NFSSFamily=tamafont,
+  Path=./,
+  Extension=.ttf
+]
+\DeclareSymbolFont{tmf}{TU}{tamafont}{m}{n}
+\DeclareMathSymbol{\tama}{0}{tmf}{"30}
+\fi
+\usepackage{mathrsfs}
+\usepackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{\definealphabet}{mmmm}
+ {% #1 = prefix, #2 = command, #3 = start, #4 = end
+  \int_step_inline:nnn { `#3 } { `#4 }
+   {
+    \cs_new_protected:cpx { #1 \char_generate:nn { ##1 }{ 11 } }
+     {
+      \exp_not:N #2 { \char_generate:nn { ##1 } { 11 } }
+     }
+   }
+ }
+ \makeatletter\providecommand*\xLongrightleftharpoons[2][]{\mathrel{%
+  \raise.22ex\hbox{%
+    $\ext@arrow 9999\MT_rightharpoonup_fill:{\phantom{\Longleftrightarrow}}{#2}$}%
+  \setbox0=\hbox{%
+    $\ext@arrow 9999\MT_leftharpoondown_fill:{#1}{\phantom{\Longleftrightarrow}}$}%
+  \kern-\wd0 \lower.22ex\box0}}
+\ExplSyntaxOff
+\definealphabet{bb}{\mathbb}{A}{Z}
+\definealphabet{cal}{\mathcal}{A}{Z}
+\definealphabet{frak}{\mathfrak}{A}{z}
+\definealphabet{rm}{\mathrm}{A}{z}
+\definealphabet{bf}{\mathbf}{A}{Z}
+\definealphabet{scr}{\mathscr}{A}{Z}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\cycl}{cycl}
+\DeclareMathOperator{\Kum}{Kum}
+\DeclareMathOperator{\FT}{FT}
+\DeclareMathOperator{\sep}{sep}
+\DeclareMathOperator{\Rep}{\mathbf{Rep}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\im}{im}
+\newcommand{\lto}{\longrightarrow}
+\newcommand{\wtilde}[1]{\widetilde{#1}}
+\let\xlto\xlongrightarrow
+
+
+\usepackage{environ,ifdraft}
+\ifdraft{
+    \NewEnviron{tikzcd}{\text{\includegraphics[draft,width=3cm]{example-image}}}
+}{
+    \usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,cd}
+}
+
+
+\usepackage{dsfont}
+\newcommand{\bbone}{\mathds{1}}
+
+\DeclareMathOperator{\Ker}{Ker}
+
+\usepackage[new]{old-arrows}
+
+\newcommand{\Frac}{\opn{Frac}}
+\newcommand{\id}{\opn{id}}
