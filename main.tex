@@ -134,19 +134,19 @@ For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Ga
 The theory of \'etale $(\varphi,\Gamma)$-modules, which was introduced by Fontaine in the early 1990s, is used to study the $p$-adic Galois representations. These are modules over certain period rings, equipped with the semi-linear action of a Frobenius map and $\Gamma_K$ which commute with each other.
 
 \subsection{The field of norms and its lift to characteristic $0$}
-The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called field of norms (corps des norms), which was introduced by Fontaine and Wintenberger in the late 1970s (cf. \cite{fontaine_extensions_1979,fontaine_corps_1979,wintenberger_corps_1983}). Given a so-called strictly arithmetically profinite (sAPF) extension (cf. \cite[D\'efinitions 1.2.1]{wintenberger_corps_1983}) of $p$-adic field $K_\infty/K$, the field of norms associated with this extension, which is a field of characteristic $p$, has the same absolute Galois group as $K_\infty$. This theory also motivates Scholze's theory of perfectoid spaces.
+The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called field of norms (corps des norms), which was introduced by Fontaine and Wintenberger in the late 1970s (cf. \cite{fontaine_extensions_1979,fontaine_corps_1979,wintenberger_corps_1983}). Given a so-called strictly arithmetically profinite (sAPF) extension (cf. \cite[D\'efinitions 1.2.1]{wintenberger_corps_1983}) of $p$-adic field $K_\infty/K$, the field of norms associated with this extension, which is a field of characteristic $p$, has the same absolute Galois group as $K_\infty$. This theory also motivates Scholze's theory of perfectoid spaces (cf. \cite[Theorem 1.1]{scholze_perfectoid_2012}).
 
-In this notes, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen: if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
-\begin{definition}
+In this notes, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen (cf. \cite{sen_ramification_1972}): if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
+\begin{definition}[{\cite[Section 2.1.1]{wintenberger_corps_1983}}]
 	Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
 	where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
 \end{definition}
-\begin{theorem}[{\cite{wintenberger_corps_1983}}]\leavevmode
+\begin{theorem}[Fontaine-Wintenberger]\leavevmode
 	\begin{enumerate}
-		\item By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+		\item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
 		      $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
-		\item The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
-		\item The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
+		\item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
+		\item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
 		\item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
 	\end{enumerate}
 \end{theorem}
@@ -154,19 +154,19 @@ In this notes, we do not need the full power of sAPF extensions (which we will n
 	Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
 \end{definition}
 \begin{remark}
-	With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bbC_p$.
+	With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bfE_{\bbQ_p}$.
 \end{remark}
 Then one has
-\begin{theorem}\leavevmode
+\begin{proposition}\leavevmode
 	\begin{enumerate}
 		\item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
-		\item $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
+		\item (cf. \cite[Corollaire 4.3.4]{wintenberger_corps_1983}) $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
 	\end{enumerate}
-\end{theorem}
+\end{proposition}
 
 Now we can lift these period rings to characteristic $0$:
 \begin{definition}
-	Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
+	Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring\footnote{We refer to \cite[Chapitre IX]{bourbakiAlgebreCommutative2006} for the detailed construction of the Wiit vectors and the Cohen ring.} over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
 \end{definition}
 
 We have the following properties of these period rings of characteristic $0$:
