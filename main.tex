@@ -127,6 +127,7 @@
 \email{941201yuan@gmail.com}
 \begin{document}
 \maketitle
+\tableofcontents
 Throughout this note, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\opn{cycl}}=K(\zeta_{p^n})$, $K^{\opn{cycl}}=\bigcup_n K_n^{\opn{cycl}}$ be the cyclotomic extension over $K$.
 
 For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Galois group of $F$. In particular, denote by $H_K=\scrG_{K^{\opn{cycl}}}$ and $\Gamma_K=\scrG_K/H_K=\opn{Gal}(K^{\opn{cycl}}/K)$.
@@ -138,97 +139,96 @@ The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called f
 
 In this notes, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen (cf. \cite{sen_ramification_1972}): if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
 \begin{definition}[{\cite[Section 2.1.1]{wintenberger_corps_1983}}]
-	Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
-	where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
+    Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
+    where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
 \end{definition}
 \begin{theorem}[Fontaine-Wintenberger]\leavevmode
-	\begin{enumerate}
-		\item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
-		      $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
-		\item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
-		\item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
-		\item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
-	\end{enumerate}
+    \begin{enumerate}
+        \item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+              $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
+        \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
+        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
+        \item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
+    \end{enumerate}
 \end{theorem}
 \begin{definition}
-	Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
+    Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
 \end{definition}
 \begin{remark}
-	With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bfE_{\bbQ_p}$.
+    With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bfE_{\bbQ_p}$.
 \end{remark}
 Then one has
 \begin{proposition}\leavevmode
-	\begin{enumerate}
-		\item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
-		\item (cf. \cite[Corollaire 4.3.4]{wintenberger_corps_1983}) $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
-	\end{enumerate}
+    \begin{enumerate}
+        \item $\bfE$ is the separable closure of $\bfE_{\bbQ_p}$ and is stable under the action of $\scrG_{\bbQ_p}$.
+        \item (cf. \cite[Corollaire 4.3.4]{wintenberger_corps_1983}) $\widetilde{\bfE}$ (resp. $\widetilde{\bfE}_K$) is the completed perfect closure of $\bfE$ (resp. $\bfE_K$).
+    \end{enumerate}
 \end{proposition}
 
 Now we can lift these period rings to characteristic $0$:
 \begin{definition}
-	Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring\footnote{We refer to \cite[Chapitre IX]{bourbaki_algebre_2006} for the detailed construction of the Wiit vectors and the Cohen ring.} over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
+    Let $\widetilde{\bfA}=W(\widetilde{\bfE})$ be the ring of Witt vectors over $\widetilde{\bfE}$. Let $\bfA_K=\opn{Cohen}(\bfE_K)$ (resp. $\bfA=\opn{Cohen}(\bfE)$) be the Cohen ring\footnote{We refer to \cite[Chapitre IX]{bourbaki_algebre_2006} for the detailed construction of the Wiit vectors and the Cohen ring.} over $\bfE_K$ (resp. $\bfE$). Denote by $\widetilde{\bfB}$ (resp. $\bfB_K$, $\bfB$) the fraction field of $\widetilde{\bfA}$ (resp. $\bfA_K$, $\bfA$).
 \end{definition}
 
-We have the following properties of these period rings of characteristic $0$. Most of them follows from the universal properties of the Witt vectors and the Cohen ring:
+We have the following properties of these period rings of characteristic $0$. Most of them follow from the universal properties of the Witt vectors and the Cohen ring:
 \begin{proposition}\leavevmode
-	\begin{enumerate}
-		\item The field $\bfB_K$ is a discrete-valued field with valuation ring $\bfA_K$ and residue field $\bfE_K$.
-		\item The field $\bfB$ is the completed maximal unramified extension of $\bfB_{\bbQ_p}$, with ring of integer $\bfA$ and residue field $\bfE$.
-		\item One has
-		      $$\bfA_{\bbQ_p}=\widehat{\bbZ_p\llbracket\pi\rrbracket[\frac{1}{\pi}]},$$
-		      where $\pi\coloneqq [\varepsilon]-1$ and the hat is taking the $p$-adic completion.
-		\item The action of $\scrG_{\bbQ_p}$ on $\bfA_{\bbQ_p}$ is given by
-		      $$g\cdot\pi=(1+\pi)^{\chi(g)}-1,$$ where $\chi:\scrG_{\bbQ_p}\lto \bbZ_p^\times$ is the cyclotomic character. The action of the Frobenius map $\varphi$ on $\bfA_{\bbQ_p}$ is given by
-		      $$\varphi(\pi)=(1+\pi)^p-1.$$
-		\item One has $\bfA^{H_K}=\bfA_K$, $\bfB^{H_K}=\bfB_K$.
-		\item The field $\widetilde{\bfB}$ (resp. $\widetilde{\bfB}_K$) is the completed $\varphi$-perfection of $\bfB$ (resp. $\bfB_K$).
-	\end{enumerate}
+    \begin{enumerate}
+        \item The field $\bfB_K$ is a discrete-valued field with valuation ring $\bfA_K$ and residue field $\bfE_K$.
+        \item The field $\bfB$ is the completed maximal unramified extension of $\bfB_{\bbQ_p}$, with ring of integer $\bfA$ and residue field $\bfE$.
+        \item One has
+              $$\bfA_{\bbQ_p}=\widehat{\bbZ_p\llbracket\pi\rrbracket[\frac{1}{\pi}]},$$
+              where $\pi\coloneqq [\varepsilon]-1$ and the hat is taking the $p$-adic completion.
+        \item The action of $\scrG_{\bbQ_p}$ on $\bfA_{\bbQ_p}$ is given by
+              $$g\cdot\pi=(1+\pi)^{\chi(g)}-1,$$ where $\chi:\scrG_{\bbQ_p}\lto \bbZ_p^\times$ is the cyclotomic character. The action of the Frobenius map $\varphi$ on $\bfA_{\bbQ_p}$ is given by
+              $$\varphi(\pi)=(1+\pi)^p-1.$$
+        \item One has $\bfA^{H_K}=\bfA_K$, $\bfB^{H_K}=\bfB_K$.
+        \item The field $\widetilde{\bfB}$ (resp. $\widetilde{\bfB}_K$) is the completed $\varphi$-perfection of $\bfB$ (resp. $\bfB_K$).
+    \end{enumerate}
 \end{proposition}
 \subsection{\'Etale $(\varphi,\Gamma)$-modules and Fontaine's equivalence of categories}
 The strategy of Fontaine to study the $p$-adic representation of $\scrG_K$ is to divide this large group into two parts: $\Gamma_K$ and $H_K$. Then by keeping the action of $\Gamma_K$, which is simply a topologically cyclic group, and replacing the action of $H_K$ with the action of Frobenius map $\varphi$, we can recover the representation of full $\scrG_K$ at the cost of a more complicated coefficient ring.
 \begin{definition}[{\cite{Fontaine2007}}]\leavevmode
-	\begin{enumerate}
-		\item A $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) is a finitely generated $\bfA_K$-module (resp. $\bfB_K$-vector space) equipped with a semi-linear continuous action of the Frobenius map $\varphi$.
-		\item A $\varphi$-module $D$ over $\bfA_K$ is called \'etale if $\varphi(D)$ generates $D$ as an $\bfA_K$-module.
-		\item A $\varphi$-module $D$ over $\bfB_K$ is called \'etale if it has an $\bfA_K$-lattice which is \'etale.
-	\end{enumerate}
+    \begin{enumerate}
+        \item A $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) is a finitely generated $\bfA_K$-module (resp. $\bfB_K$-vector space) equipped with a semi-linear continuous action of the Frobenius map $\varphi$.
+        \item A $\varphi$-module $D$ over $\bfA_K$ is called \'etale if $\varphi(D)$ generates $D$ as an $\bfA_K$-module.
+        \item A $\varphi$-module $D$ over $\bfB_K$ is called \'etale if it has an $\bfA_K$-lattice which is \'etale.
+    \end{enumerate}
 \end{definition}
 As we mentioned before, $\varphi$-modules can be used to recover the representation of $H_K$. To be more precise, one has the following result:
 \begin{proposition}[{\cite[Proposition 1.2.6]{Fontaine2007}}]\label{thm:44873}
-	The functor $\calD$:
-	$$\{\text{finite dimensional }\bbZ_p\text{-representations of }H_K\}\xlto{\calD} \{\text{\'etale } \varphi\text{-modules over }\bfA_K\},$$
-	$$V\longmapsto (\bfA\otimes_{\bbZ_p} V)^{H_K};$$
-	is an equivalence of categories, with quasi-inverse $\calV$ given by $\calV(D)\coloneqq (\bfA\otimes_{\bfA_K} D)^{\varphi=1}$.
+    The functor $\calD$:
+    $$\{\text{finite dimensional }\bbZ_p\text{-representations of }H_K\}\xlto{\calD} \{\text{\'etale } \varphi\text{-modules over }\bfA_K\},$$
+    $$V\longmapsto (\bfA\otimes_{\bbZ_p} V)^{H_K};$$
+    is an equivalence of categories, with quasi-inverse $\calV$ given by $\calV(D)\coloneqq (\bfA\otimes_{\bfA_K} D)^{\varphi=1}$.
 \end{proposition}
 \begin{remark}\label{rmk:44018}
-	By replacing $\bfA$ (resp. $\bfA_K$) by $\bfB$ (resp. $\bfB_K$), one can also define the equivalence of categories between finite-dimensional $\bbQ_p$-representations of $\scrG_K$ and \'etale $\varphi$-modules over $\bfB_K$.
+    By replacing $\bfA$ (resp. $\bfA_K$) by $\bfB$ (resp. $\bfB_K$), one can also define the equivalence of categories between finite-dimensional $\bbQ_p$-representations of $\scrG_K$ and \'etale $\varphi$-modules over $\bfB_K$.
 \end{remark}
 \begin{definition}[{\cite{Fontaine2007}}]
-	An \'etale $(\varphi,\Gamma)$-module over $\bfA_K$ (resp. $\bfB_K$) is an \'etale $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) with a semi-linear action of $\Gamma_K$ which commutes with the semi-linear action of $\varphi$.
+    An \'etale $(\varphi,\Gamma)$-module over $\bfA_K$ (resp. $\bfB_K$) is an \'etale $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) with a semi-linear action of $\Gamma_K$ which commutes with the semi-linear action of $\varphi$.
 \end{definition}
 By \Cref{thm:44873}, it is not hard to get the following important result:
 \begin{theorem}[{\cite[Th\'eor\`eme A.3.4.3]{Fontaine2007}}]\label{thm:24308}
-	The functor $\calD$ in \Cref{thm:44873} induces an equivalence of categories between finite-dimensional $\bbZ_p$- (resp. $\bbQ_p$-)representations of $\scrG_K$ and \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$ (resp. $\bfB_K$). Its quasi-inverse is given by $\calV$ in \Cref{thm:44873}.
+    The functor $\calD$ in \Cref{thm:44873} induces an equivalence of categories between finite-dimensional $\bbZ_p$- (resp. $\bbQ_p$-)representations of $\scrG_K$ and \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$ (resp. $\bfB_K$). Its quasi-inverse is given by $\calV$ in \Cref{thm:44873}.
 \end{theorem}
 
-
-\section{Galois cohomology and Iwasawa cohomology}
-\subsection{Galois Cohomology}
-Since we have established the equivalence of categories \Cref{thm:24308}, it is natural to use the \'etale $(\varphi,\Gamma)$-modules to recover the informations of the $p$-adic Galois representations. For example, we can use \'etale $(\varphi,\Gamma)$-modules to calcuation the Galois cohomology, and this is discovered by Herr:
+\subsection{Herr complex and Galois cohomology}
+Since we have established the equivalence of categories in \Cref{thm:24308}, it is natural to use the \'etale $(\varphi,\Gamma)$-modules to recover the information of the $p$-adic Galois representations. For example, we can use \'etale $(\varphi,\Gamma)$-modules to calculate the Galois cohomology. This is discovered by Herr:
 \begin{theorem}[{\cite{herr_sur_1998}}]
     Let $\gamma$ be a topological generator of $\Gamma_K$. For any \'etale $(\varphi,\Gamma)$-modules $D$ over $\bfA_{K}$ (resp. $\bfB_K$). Define the complex
     $$\calC_{\varphi,\gamma}(D):\begin{tikzcd}[sep=huge, ampersand replacement=\&]
-        0\ar[r]\&D\ar[r,"\begin{pmatrix}
-            \varphi-1\\\gamma-1
-        \end{pmatrix}"]\&D\oplus D\ar[r,"{\begin{pmatrix}
-            \gamma-1 & 1-\varphi
-        \end{pmatrix}}"]\& D\ar[r]\&0
-    \end{tikzcd}.$$
+            0\ar[r]\&D\ar[r,"\begin{pmatrix}
+                    \varphi-1 \\\gamma-1
+                \end{pmatrix}"]\&D\oplus D\ar[r,"{\begin{pmatrix}
+                \gamma-1 & 1-\varphi
+            \end{pmatrix}}"]\& D\ar[r]\&0
+        \end{tikzcd}.$$
     Then for any $\bbZ_p$- (resp. $\bbQ_p$-)representation $V$ of $\scrG_K$, one has isomorphism of cohomology groups:
     $$H^i(\scrG_K,V)\cong H^i(\calC_{\varphi,\gamma}(\calD(V)),\ i=0,1,2.$$
 \end{theorem}
 
 \subsection{The $\psi$-operator}
+The following lemma follows from \cite[Theorem 29.2]{matsumura_commutative_1987} and a devissage argument:
 \begin{lemma}
     One has
     $$[\bfA:\varphi(\bfA)]=[\bfA_K:\varphi(\bfA_K)]=p.$$
@@ -238,7 +238,7 @@ Since we have established the equivalence of categories \Cref{thm:24308}, it is 
 \begin{definition}
     The $\psi$-operator on the period ring $\bfA$ is defined as:
     $$\psi:\bfA\lto\bfA,\ x\longmapsto \frac{1}{p}\varphi^{-1}(\opn{tr}_{\bfA/\varphi(\bfA)}(x)).$$
-    By restricting this operator to $\bfA_K$, we get the $\psi$-operator on $\bfA_K$. 
+    By restricting this operator to $\bfA_K$, we get the $\psi$-operator on $\bfA_K$.
 \end{definition}
 One can easily verify the following properties of the $\psi$-operator:
 \begin{lemma}\leavevmode
@@ -255,7 +255,7 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
     $$\psi(\varphi(a)x)=a\psi(x),\ \psi(a\varphi(x))=\psi(a)x.$$ Moreover, $\psi$ commutes with $\Gamma_K$.
 \end{lemma}
 \begin{proof}
-    Define $\psi$ on $D$ to be the operator $\psi\otimes 1$ on $\bfA\otimes_{A_K}\calV(D)$.  The uniqueness follows from the \'etaleness of $D$.
+    Define $\psi$ to be the operator $\psi\otimes 1$ on $D\subset\bfA\otimes_{A_K}\calV(D)$.  The uniqueness follows from the \'etaleness of $D$.
 \end{proof}
 
 \begin{corollary}
@@ -265,15 +265,24 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
 \end{corollary}
 
 
+\section{Iwasawa cohomology of $p$-adic representations}
+\subsection{Preliminaries on Iwasawa algebra}
+For any $n\geq $, we take a topological generator $\gamma_n$ of the Galois group $\Gamma_n=\opn{Gal}(K^{\opn{cycl}}/K_n^{\opn{cycl}})$, satisfying $\gamma_n=\gamma_1^{p^{n-1}}$. The Iwasawa algebra
+$$\bbZ_p\llbracket\Gamma_K\rrbracket\coloneqq \varprojlim_n \bbZ_p[\Gamma_K/\Gamma_n]$$
+is isomorphic to $\bbZ_p\llbracket T\rrbracket$ with the $(p,T)$-adic topology by sending $T$ to $\gamma-1$. We have
+$$\bbZ_p\llbracket \Gamma_K\rrbracket/(\gamma_n-1)=\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)].$$
+Furthermore, $\scrG_K$ acts on $\bbZ_p\llbracket\Gamma_K\rrbracket$ and $\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]$ through $\Gamma_K$.
+
+
 \subsection{Iwasawa cohomology}
 \begin{definition}\leavevmode
     \begin{enumerate}
-        \item If $V$ is a $\bbZ_p$-representation of $\scrG_K$, we define the Iwasawa cohomology of $V$ to be 
-    $$H^i_{\opn{Iw}}(K,V)\coloneqq \varprojlim_n H^i(\scrG_{K_n^{\opn{cycl}}},V),$$
-    where the transition maps are the corestriction maps.
-    \item If $V$ is a $\bbQ_p$-representation, we define the Iwasawa cohomology of $V$ to be 
-    $$H^i_{\opn{Iw}}(K,V)\coloneqq H^i_{\opn{Iw}}(K,T)\otimes_{\bbZ_p} \bbQ,$$
-    where $T$ is arbitary $\scrG_K$-stable $\bbZ_p$-lattice in $V$.
+        \item If $V$ is a $\bbZ_p$-representation of $\scrG_K$, we define the Iwasawa cohomology of $V$ to be
+              $$H^i_{\opn{Iw}}(K,V)\coloneqq \varprojlim_n H^i(\scrG_{K_n^{\opn{cycl}}},V),$$
+              where the transition maps are the corestriction maps.
+        \item If $V$ is a $\bbQ_p$-representation, we define the Iwasawa cohomology of $V$ to be
+              $$H^i_{\opn{Iw}}(K,V)\coloneqq H^i_{\opn{Iw}}(K,T)\otimes_{\bbZ_p} \bbQ,$$
+              where $T$ is arbitary $\scrG_K$-stable $\bbZ_p$-lattice in $V$.
     \end{enumerate}
 \end{definition}
 
@@ -282,7 +291,12 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
     $$H^i(\scrG_K,\bbZ_p\llbracket \Gamma_K\rrbracket\otimes V)\cong H^i_{\opn{Iw}}(K,V).$$
 \end{proposition}
 \begin{proof}
-    We only need to consider the case that $V$ is a $\bbZ_p$-representation of $\scrG_K$.
+    It reduces to the case that $V$ is a $\bbZ_p$-representation of $\scrG_K$.
+
+    By using Shapiro lemma and viewing $V$ as a $\bbZ_p[\scrG_K]$-module, we have an isomorphism
+    $$H^i(\scrG_{K_n^{\opn{cycl}}},V)\cong H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]\otimes V).$$
+    Thus
+    $$H^i_{\opn{Iw}}(K,V)\cong\varprojlim_n H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]\otimes V)=\varprojlim_n H^i(\scrG_K,\bbZ_p\llbracket\Gamma_K\rrbracket/(\gamma_n-1)\otimes V).$$
 \end{proof}
 
 
