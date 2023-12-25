@@ -127,7 +127,7 @@
 \email{941201yuan@gmail.com}
 \begin{document}
 \maketitle
-Throughout this note, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\opn{cycl}}=K(\zeta_{p^n})$, $K^{\opn{cycl}}=\bigcup_n K_n$ be the cyclotomic extension over $K$.
+Throughout this note, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\opn{cycl}}=K(\zeta_{p^n})$, $K^{\opn{cycl}}=\bigcup_n K_n^{\opn{cycl}}$ be the cyclotomic extension over $K$.
 
 For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Galois group of $F$. In particular, denote by $H_K=\scrG_{K^{\opn{cycl}}}$ and $\Gamma_K=\scrG_K/H_K=\opn{Gal}(K^{\opn{cycl}}/K)$.
 \section{Theory of $(\varphi,\Gamma)$-modules}
@@ -207,10 +207,85 @@ As we mentioned before, $\varphi$-modules can be used to recover the representat
 	An \'etale $(\varphi,\Gamma)$-module over $\bfA_K$ (resp. $\bfB_K$) is an \'etale $\varphi$-module over $\bfA_K$ (resp. $\bfB_K$) with a semi-linear action of $\Gamma_K$ which commutes with the semi-linear action of $\varphi$.
 \end{definition}
 By \Cref{thm:44873}, it is not hard to get the following important result:
-\begin{theorem}[{\cite[Th\'eor\`eme A.3.4.3]{Fontaine2007}}]
+\begin{theorem}[{\cite[Th\'eor\`eme A.3.4.3]{Fontaine2007}}]\label{thm:24308}
 	The functor $\calD$ in \Cref{thm:44873} induces an equivalence of categories between finite-dimensional $\bbZ_p$- (resp. $\bbQ_p$-)representations of $\scrG_K$ and \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$ (resp. $\bfB_K$). Its quasi-inverse is given by $\calV$ in \Cref{thm:44873}.
 \end{theorem}
+
+
 \section{Galois cohomology and Iwasawa cohomology}
+\subsection{Galois Cohomology}
+Since we have established the equivalence of categories \Cref{thm:24308}, it is natural to use the \'etale $(\varphi,\Gamma)$-modules to recover the informations of the $p$-adic Galois representations. For example, we can use \'etale $(\varphi,\Gamma)$-modules to calcuation the Galois cohomology, and this is discovered by Herr:
+\begin{theorem}[{\cite{herr_sur_1998}}]
+    Let $\gamma$ be a topological generator of $\Gamma_K$. For any \'etale $(\varphi,\Gamma)$-modules $D$ over $\bfA_{K}$ (resp. $\bfB_K$). Define the complex
+    $$\calC_{\varphi,\gamma}(D):\begin{tikzcd}[sep=huge, ampersand replacement=\&]
+        0\ar[r]\&D\ar[r,"\begin{pmatrix}
+            \varphi-1\\\gamma-1
+        \end{pmatrix}"]\&D\oplus D\ar[r,"{\begin{pmatrix}
+            \gamma-1 & 1-\varphi
+        \end{pmatrix}}"]\& D\ar[r]\&0
+    \end{tikzcd}.$$
+    Then for any $\bbZ_p$- (resp. $\bbQ_p$-)representation $V$ of $\scrG_K$, one has isomorphism of cohomology groups:
+    $$H^i(\scrG_K,V)\cong H^i(\calC_{\varphi,\gamma}(\calD(V)),\ i=0,1,2.$$
+\end{theorem}
+
+\subsection{The $\psi$-operator}
+\begin{lemma}
+    One has
+    $$[\bfA:\varphi(\bfA)]=[\bfA_K:\varphi(\bfA_K)]=p.$$
+    Moreover, one can take a common basis of these two extensions:
+    $1,[\varepsilon],[\varepsilon]^2,\cdots,[\varepsilon]^{p-1}$.
+\end{lemma}
+\begin{definition}
+    The $\psi$-operator on the period ring $\bfA$ is defined as:
+    $$\psi:\bfA\lto\bfA,\ x\longmapsto \frac{1}{p}\varphi^{-1}(\opn{tr}_{\bfA/\varphi(\bfA)}(x)).$$
+    By restricting this operator to $\bfA_K$, we get the $\psi$-operator on $\bfA_K$. 
+\end{definition}
+One can easily verify the following properties of the $\psi$-operator:
+\begin{lemma}\leavevmode
+    \begin{enumerate}
+        \item The $\psi$-operator is a left-inverse of $\varphi$, i.e. $\psi\circ\varphi=\opn{id}$.
+        \item For $x\in\bfA$, if we write $x=\sum_{k=0}^{p-1}\varphi(x_k)[\varepsilon]^k$, where $x_k\in\bfA$, $k=0,1,\cdots,p-1$, then $\psi(x)=x_0$.
+        \item $\psi$ commutes with $\scrG_{\bbQ_p}$.
+    \end{enumerate}
+\end{lemma}
+
+It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$:
+\begin{lemma}
+    If $D$ is an \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$, there exists a unique operator $\psi:D\lto D$, satisfying that for every $a\in\bfA_K$ and $x\in D$,
+    $$\psi(\varphi(a)x)=a\psi(x),\ \psi(a\varphi(x))=\psi(a)x.$$ Moreover, $\psi$ commutes with $\Gamma_K$.
+\end{lemma}
+\begin{proof}
+    Define $\psi$ on $D$ to be the operator $\psi\otimes 1$ on $\bfA\otimes_{A_K}\calV(D)$.  The uniqueness follows from the \'etaleness of $D$.
+\end{proof}
+
+\begin{corollary}
+    Let $D$ be an \'etale $(\varphi,\Gamma)$-module over $\bfA_K$. Then for any $x\in D$ and $n\geq 1$, one has
+    $$x=\sum_{i=0}^{p^n-1}[\varepsilon]^i\varphi^n(x_i),$$
+    where $x_i=\psi^n([\varepsilon]^{-i}x)$.
+\end{corollary}
+
+
+\subsection{Iwasawa cohomology}
+\begin{definition}\leavevmode
+    \begin{enumerate}
+        \item If $V$ is a $\bbZ_p$-representation of $\scrG_K$, we define the Iwasawa cohomology of $V$ to be 
+    $$H^i_{\opn{Iw}}(K,V)\coloneqq \varprojlim_n H^i(\scrG_{K_n^{\opn{cycl}}},V),$$
+    where the transition maps are the corestriction maps.
+    \item If $V$ is a $\bbQ_p$-representation, we define the Iwasawa cohomology of $V$ to be 
+    $$H^i_{\opn{Iw}}(K,V)\coloneqq H^i_{\opn{Iw}}(K,T)\otimes_{\bbZ_p} \bbQ,$$
+    where $T$ is arbitary $\scrG_K$-stable $\bbZ_p$-lattice in $V$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    For a $\bbZ_p$- (resp. $\bbQ_p$-)representation of $\scrG_K$, one has an isomorphism
+    $$H^i(\scrG_K,\bbZ_p\llbracket \Gamma_K\rrbracket\otimes V)\cong H^i_{\opn{Iw}}(K,V).$$
+\end{proposition}
+\begin{proof}
+    We only need to consider the case that $V$ is a $\bbZ_p$-representation of $\scrG_K$.
+\end{proof}
+
+
 \section{Explicit reciprocity law}
 
 \printbibliography
