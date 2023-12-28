@@ -214,7 +214,7 @@ By \Cref{thm:44873}, it is not hard to get the following important result:
 
 \subsection{Herr complex and Galois cohomology}
 Since we have established the equivalence of categories in \Cref{thm:24308}, it is natural to use the \'etale $(\varphi,\Gamma)$-modules to recover the information of the $p$-adic Galois representations. For example, we can use \'etale $(\varphi,\Gamma)$-modules to calculate the Galois cohomology. This is discovered by Herr:
-\begin{theorem}[{\cite{herr_sur_1998}}]
+\begin{theorem}[{\cite{herr_sur_1998}}]\label{thm:12830}
     Let $\gamma$ be a topological generator of $\Gamma_K$. For any \'etale $(\varphi,\Gamma)$-modules $D$ over $\bfA_{K}$ (resp. $\bfB_K$). Define the complex
     $$\calC_{\varphi,\gamma}(D):\begin{tikzcd}[sep=huge, ampersand replacement=\&]
             0\ar[r]\&D\ar[r,"\begin{pmatrix}
@@ -299,7 +299,40 @@ Furthermore, $\scrG_K$ acts on $\bbZ_p\llbracket\Gamma_K\rrbracket$ and $\bbZ_p[
     $$H^i_{\opn{Iw}}(K,V)\cong\varprojlim_n H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]\otimes V)=\varprojlim_n H^i(\scrG_K,\bbZ_p\llbracket\Gamma_K\rrbracket/(\gamma_n-1)\otimes V).$$
 \end{proof}
 
-
+The main theorem of this section is the following:
+\begin{theorem}
+    If $V$ is a $\bbZ_p$ or $\bbQ_p$ representation of $\scrG_K$, then we have:
+    \begin{enumerate}
+        \item $H^i_{\opn{Iw}}(K,V)=0$, if $i\neq 1,2$.
+        \item There exist canonical isomorphisms $$H^1_{\opn{Iw}}(K,V)\cong \calD(V)^{\psi=1},\ H^2_{\opn{Iw}}(K,V)\cong \calD(V)/(\psi-1).$$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}[Sketch of proof]\leavevmode
+    Set $D=\calD(V)$.
+    \begin{enumerate}[label=Step \arabic*.]
+        \item Calculating Galois cohomology by $\psi$-complex.
+        
+        By replacing $\varphi$ in Herr's complex with $\psi$, we obtain a new complex $\calC_{\psi,\gamma}(D)$ with a morphism:
+        $$\begin{tikzcd}[sep=huge, ampersand replacement=\&]
+            \calC_{\varphi,\gamma}(D):\&0\ar[r]\&D\ar[r]\ar[d,equal]\&D\oplus D\ar[r]\ar[d,"{\begin{psmallmatrix}
+                -\psi & 0\\0&\opn{Id}
+            \end{psmallmatrix}}"]\& D\ar[r]\ar[d,"-\psi"]\&0\\
+            \calC_{\psi,\gamma}(D):\&0\ar[r]\&D\ar[r,"\begin{psmallmatrix}
+                    \psi-1 \\\gamma-1
+                \end{psmallmatrix}"']\&D\oplus D\ar[r,"{\begin{psmallmatrix}
+                \gamma-1 & 1-\psi
+            \end{psmallmatrix}}"']\& D\ar[r]\&0
+        \end{tikzcd}.$$
+        Since $\psi$ is surjective on $D$, the above morphism of complexes is also surjective.
+        One can show that the kernel complex of the above morphism
+        $$\begin{tikzcd}
+            0\ar[r]&D^{\psi=0}\ar[r,"\gamma-1"]&D^{\psi=0}\ar[r]&0
+        \end{tikzcd}$$
+        is exact, i.e. $\gamma-1$ is invertible on $D^{\psi=0}$. This turns out to be the most delicate point of all the computations and is proved in \cite{herr_sur_1998}.
+        
+        Thus $\calC_{\psi,\gamma}(D)$ is quasi-isomorphic to $\calC_{\varphi,\gamma}(D)$ and consequently calculates the Galois cohomology $H^i(\scrG_K,V)$ by Herr's theorem (cf. \Cref{thm:12830}).
+    \end{enumerate}
+\end{proof}
 \section{Explicit reciprocity law}
 
 \printbibliography
