@@ -308,9 +308,9 @@ The main theorem of this section is the following:
     \end{enumerate}
 \end{theorem}
 \begin{proof}[Sketch of proof]\leavevmode
-    Set $D=\calD(V)$.
-    \begin{enumerate}[label=Step \arabic*.]
-        \item Calculating Galois cohomology by $\psi$-complex.
+    The theorem is trivial when $i\geq 3$, so we focus on the cases of $i=0,1,2$. Set $D=\calD(V)$.
+    \begin{enumerate}[label=\textit{Step \arabic*.},wide, labelwidth=!, labelindent=0pt]
+        \item \textit{Calculating Galois cohomology by $\psi$-complex.}
         
         By replacing $\varphi$ in Herr's complex with $\psi$, we obtain a new complex $\calC_{\psi,\gamma}(D)$ with a morphism:
         $$\begin{tikzcd}[sep=huge, ampersand replacement=\&]
@@ -331,12 +331,37 @@ The main theorem of this section is the following:
         is exact, i.e. $\gamma-1$ is invertible on $D^{\psi=0}$. This turns out to be the most delicate point of all the computations and is proved in \cite{herr_sur_1998}.
         
         Thus $\calC_{\psi,\gamma}(D)$ is quasi-isomorphic to $\calC_{\varphi,\gamma}(D)$ and consequently calculates the Galois cohomology $H^i(\scrG_K,V)$ by Herr's theorem (cf. \Cref{thm:12830}).
-        \item Taking inverse limit.
+        \item \textit{Taking inverse limit.}
 
 The result in Step 1 has several quick consequences:
+\begin{enumerate}
+    \item $H^0(\scrG_K,V)\cong \calD(V)^{\psi=1,\gamma=1}$;
+    \item $H^2(\scrG,V)\cong \frac{\calD(V)}{\psi-1}/(\gamma-1)$;
+    \item There is an exact sequence
+    \begin{equation}\label{eq:57298}\begin{tikzcd}
+        0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma-1}\ar[r]&H^1(\scrG,V)\ar[r]&\left(\frac{\calD(V)}{\psi-1}\right)\ar[r]&0\\
+        &&(x,y)\ar[r,maps to]&x&
+    \end{tikzcd}.\end{equation}
+\end{enumerate}
+For $i=0$,
+$$H^0(K,V)=\varprojlim_{\opn{Tr}}V^{\scrG_{K_n}^{\opn{cycl}}},$$
+where $\opn{Tr}$ is the trace map. Since $V^{\scrG_{K_n^{\opn{cycl}}}}$ is increasing and $V$ is of finite-dimensional, the sequence is stationary for $n>n_0$, where $n_0>\!\!>0$. Then $\opn{Tr}_{K_{n+1}^{\opn{\cycl}}/K_n^{\opn{cycl}}}$ is just multiplication by $p$ for $n\geq n_0$. Since $V$ does not contain $p$-divisible elements, this shows that $\varprojlim_{\opn{Tr}}V^{\scrG_{K_n^{\opn{cycl}}}}=0$.
 
+For $i=2$, by replacing $K$ with $K_n^{\opn{cycl}}$, one has an isomorphism $$H^2(\scrG_{K_n^{\opn{cycl}}},V)\cong \frac{\calD(V)}{\psi-1}/(\gamma_n-1).$$
+With this identification, the corestriction map is induced by 
+ the identity map $\opn{Id}$ on $\calD(V)$. Since $\frac{\calD(V)}{\psi-1}$ is compact (cf. [TBA]), one concludes that
+ $$H^2_{\opn{Iw}}(K,V)=\varprojlim_{n}\frac{\calD(V)}{\psi-1}/(\gamma_n-1)=\frac{\calD(V)}{\psi-1},$$
+ where the last equality is [TBA].
 
-
+ The case of $i=1$ is of most interests. It is easy to check that the exact sequence \Cref{eq:57298} admits following naturlity:
+ $$\begin{tikzcd}
+     0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_n-1}\ar[r]\ar[d]&H^1(\calG_{K_n^{\opn{cycl}}},V)\ar[r]\ar[d,"\opn{cores}"]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n-1}\ar[r]\ar[d,"\frac{\gamma_n-1}{\gamma_{n-1}-1}"]&0\\
+     0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_{n-1}-1}\ar[r]&H^1(\calG_{K_{n-1}^{\opn{cycl}}},V)\ar[r]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_{n-1}-1}\ar[r]&0
+ \end{tikzcd}.$$
+ Thus by taking inverse limit on \Cref{eq:57298}, we get
+ $$\begin{tikzcd}
+     0\ar[r]&\varprojlim_n\frac{\calD(V)^{\psi-1}}{\gamma_n-1}\ar[r]&H^1_{\opn{Iw}}(\scrG_{K_n^{\opn{cycl}}},V)\ar[r]& &0
+ \end{tikzcd}$$
     \end{enumerate}
 \end{proof}
 \section{Explicit reciprocity law}
