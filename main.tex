@@ -261,8 +261,25 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
 \begin{corollary}
     Let $D$ be an \'etale $(\varphi,\Gamma)$-module over $\bfA_K$. Then for any $x\in D$ and $n\geq 1$, one has
     $$x=\sum_{i=0}^{p^n-1}[\varepsilon]^i\varphi^n(x_i),$$
-    where $x_i=\psi^n([\varepsilon]^{-i}x)$.
+    where $x_i=\psi^n([\varepsilon]^{-i}x)$. It is easy to see if $F(\pi)$ belongs to $\bbZ_p\llbracket\pi\rrbracket$, $F_i(\pi)$ belongs to $\bbZ_p\llbracket\pi\rrbracket$ for all $i$. Then $\psi(\bbF_p\llbracket\bar{\pi}\rrbracket)\subset\bbF_p\llbracket\bar{\pi}\rrbracket$, hence $\psi(\bbZ_p\llbracket\pi\rrbracket)\subset\bbZ_p\llbracket\pi\rrbracket$.
 \end{corollary}
+
+\begin{example}
+    Let $D=\bfA_{\bbQ_p}\supset \bbZ_p\llbracket \pi\rrbracket$ be the trivial $(\varphi,\Gamma)$-module. Then for $x=F(\pi)\in\bbZ_p\llbracket\pi\rrbracket$, $\varphi(x)=F((1+\pi)^p-1)$. Write
+    $$F(\pi)=\sum_{i=0}^{p-1}(1+\pi)^i F_i((1+\pi)^p-1),$$
+    then $\psi(F(\pi))=F_0(\pi)$. Consequently, $\psi$ is continuous for the weak topology.
+
+    Moreover, we have
+    \begin{equation}
+        \begin{aligned}
+            \varphi(\psi(x))= & F_0((1+\pi)^p-1)                                                                  \\
+            =                 & \sum_{i=0}^{p-1}\left(\frac{1}{p}\sum_{z^p=1}z^i\right)(1+\pi)^i F_i((1+\pi)^p-1) \\
+            =                 & \frac{1}{p}\sum_{z^p=1}\sum_{i=0}^{p-1}(z(1+\pi))^i F_i((z(1+\pi))^p-1)           \\
+            =                 & \frac{1}{p}\sum_{z^p=1}F(z(1+\pi)-1).
+        \end{aligned}
+    \end{equation}
+    This shows that this $\psi$-operator is the same one as in [Coates-Sujatha].
+\end{example}
 
 
 \section{Iwasawa cohomology of $p$-adic representations}
@@ -371,19 +388,63 @@ The main theorem of this section is the following:
 \end{proof}
 
 The inverse of the isomorphism \Cref{eq:43260} in \Cref{thm:15019}, which we denote\footnote{We call it the exponential map, for it is closed related to the Bloch-Kato's exponential map for de Rham representations.} by $\opn{Exp}^*_{V^*(1)}$, is the map that will produce $p$-adic L-functions in the next section. However, it is not easy to write down an explicit formula for this map. On the other hand, Chebrbonnier and Colmez gave an explicit formula for the isomorphism \Cref{eq:43260}, which we denote by $\opn{Log}^*_{V^*(1)}$:
-\begin{theorem}[{\cite[Section I.5, Th\'eor\`eme II.1.3]{cherbonnier_theorie_1999}}]
+\begin{theorem}[{\cite[Section I.5, Th\'eor\`eme II.1.3]{cherbonnier_theorie_1999}}]\leavevmode
     \begin{enumerate}
-        \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, there exists $b_n(y)\in \bfA\otimes V$ such that $(\gamma_n-1)(\varphi-1)b_n(y)=(\varphi-1)y$.
+        \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, there exists $b_n(y)\in \bfA\otimes V$ such that $$(\gamma_n-1)(\varphi-1)b_n(y)=(\varphi-1)y.$$
         \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, the map
               $$\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)$$
               is a cocycle in $H^1(K_n^{\opn{cycl}},V)$.
         \item The map
               $$h_{n,V}^1:\calD(V)^{\psi=1}\lto H^1(K_n^{\opn{cycl}},V),\ y\longmapsto \frac{\log(\chi(\gamma_n))}{p^n}\left(\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)\right)$$
               does not depend on the choice of generator $\gamma_n$.
-        \item The map $$\opn{Log}^*_{V^*(1)}\colon y\longmapsto \varprojlim_n h_{n,V}^1(y)$$ is an isomorphism from $\calD(V)^{\psi=1}$ to $H_{\opn{Iw}}(K,V)$.
+        \item The map $$\opn{Log}^*_{V^*(1)}\colon y\longmapsto \varprojlim_n h_{n,V}^1(y)$$ is an isomorphism from $\calD(V)^{\psi=1}$ to $H_{\opn{Iw}}^1(K,V)$.
     \end{enumerate}
 \end{theorem}
-\section{Explicit reciprocity law}
+\section{The explicit reciprocity law: a baby case}
+In this section, we will explain and prove the commutativity of the following diagram:
+$$\begin{tikzcd}
+        \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
+        &\calD(\bbZ_p(1))^{\psi=1}&
+    \end{tikzcd},$$
+which we call explicit reciprocity law.
+\subsection{The module $\calD(\bbZ_p(1))^{\psi=1}$ and Coleman's power series}
+The module $\bbZ_p(1)$ is just $\bbZ_p$ with the action of $\scrG_{\bbQ_p}$ given by $g\cdot x=\chi(g)x$ for every $g\in\scrG_{\bbQ_p}$ and $x\in\bbZ_p(1)$. One has
+$$\calD(\bbZ_p(1))=\left(\bfA\otimes\bbZ_p(1)\right)^{H_{\bbQ_p}}=\bfA_{\bbQ_p}(1),$$
+with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on $\bfA_{\bbQ_p}$ by $\gamma\cdot f(\pi)=\chi(\gamma)f((1+\pi)^{\chi(\gamma)}-1)$.
 
+\begin{proposition}\leavevmode
+    \begin{enumerate}
+        \item One has isomorphism $\bfA_{\bbQ_p}^{\psi=1}=\bbZ_p\cdot \frac{1}{\pi}\oplus \left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$;
+        \item There exists an exact sequence
+              $$\begin{tikzcd}
+                      0\ar[r]&\bbZ_p\ar[r]&\left(\bfA_{\bbQ_p}^+\right)^{\psi=1}\ar[r]&\left(\pi\bfA_{\bbQ_p}^+\right)^{\psi=0}\ar[r]&0
+                  \end{tikzcd}$$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    [TBA]
+\end{proof}
+
+Let us recall two results that we have learned in the lesson.
+\begin{theorem}[Coleman's power series]
+    Let $u=(u_n)_{n\geq 1}\in\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
+\end{theorem}
+\subsection{Input from Kummer theory}
+Recall that we set $\varepsilon=(1,\zeta_p,\cdots,\zeta_{p^n},\cdots)\in\bfE_{\bbQ_p}$. If for every $n\geq 1$, we set $\pi_n=\zeta_{p^n}-1$, then $\pi_n$ is a uniformizer of $\bbQ_{p,n}^{\opn{cycl}}$, and $\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(\pi_{n+1})=\pi_n$.
+
+For an element $a$ of $\bbQ_{p,n}^{\opn{cycl},\times}$, choose $x=(a,x^{(1)},\cdots,)\in\bbC_p^\flat$. This $x$ is uniquely determined by $a$ up to $\varepsilon^u$ with $u\in\bbZ_p$. Therefore if $g\in\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$, then
+$g(x)/x=\varepsilon^{c(g)}$, with $c(g)\in\bbZ_p$. This gives a $1$-cocycle $c$ on $\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$ with values in $\bbZ_p(1)$ and defines the Kummer map
+$$\kappa\colon \bbQ_{p,n}^{\opn{cycl},\times}\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+By Kummer theory, we have
+$$H^1(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1))\cong\bbZ_p\cdot\kappa(\pi_n)\oplus \kappa\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\right).$$
+On the other hand, one can verify that the diagram
+$$\begin{tikzcd}
+        \bbQ_{p,n}^{\opn{cycl},\times}\ar[r,"\kappa"]\ar[d,"\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n+1}^{\opn{cycl}}}"]&H^1\left(\scrG_{\bbQ_{p,n+1}^{\opn{cycl}}},\bbZ_p(1)\right)\ar[d,"\opn{cores}"]\\
+        \bbQ_{p,n}^{\opn{cycl},\times}\ar[r,"\kappa"]&H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right)
+    \end{tikzcd}$$
+commutes, which induces a map
+$$\kappa\colon \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\lto H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))$$
+and consequently an isomorphism
+$$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\bbQ_{p,n}^{\opn{cycl},\times}\right).$$
 \printbibliography
 \end{document}
