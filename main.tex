@@ -384,7 +384,7 @@ The main theorem of this section is the following:
 \end{proof}
 
 The inverse of the isomorphism \Cref{eq:43260} in \Cref{thm:15019}, which we denote\footnote{We call it the exponential map, for it is closed related to the Bloch-Kato's exponential map for de Rham representations.} by $\opn{Exp}^*_{V^*(1)}$, is the map that will produce $p$-adic L-functions in the next section. However, it is not easy to write down an explicit formula for this map. On the other hand, Chebrbonnier and Colmez gave an explicit formula for the isomorphism \Cref{eq:43260}, which we denote by $\opn{Log}^*_{V^*(1)}$:
-\begin{theorem}[{\cite[Section I.5, Th\'eor\`eme II.1.3]{cherbonnier_theorie_1999}}]\leavevmode
+\begin{theorem}[{\cite[Section I.5, Th\'eor\`eme II.1.3]{cherbonnier_theorie_1999}}]\label{thm:28958}\leavevmode
     \begin{enumerate}
         \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, there exists $b_n(y)\in \bfA\otimes V$ such that $$(\gamma_n-1)(\varphi-1)b_n(y)=(\varphi-1)y.$$
         \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, the map
@@ -421,7 +421,7 @@ with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on
 
 Besides that, let us recall two results that we have learned in the lesson.
 \begin{theorem}[Coleman's power series]\leavevmode\begin{enumerate}
-        \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
+        \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\left(\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}\right)-\{0\}$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
         \item (cf. \cite[Lemma 2.4.5]{coates_cyclotomic_2006}, \Cref{eg:57892}) Let $\partial=(1+T)\frac{\dif}{\dif T}$. Then $\frac{\partial f_u}{f_u}(\pi)\in\left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$.
     \end{enumerate}
 
@@ -429,11 +429,11 @@ Besides that, let us recall two results that we have learned in the lesson.
 \subsection{Input from Kummer theory}
 Recall that we set $\varepsilon=(1,\zeta_p,\cdots,\zeta_{p^n},\cdots)\in\bfE_{\bbQ_p}$. If for every $n\geq 1$, we set $\pi_n=\zeta_{p^n}-1$, then $\pi_n$ is a uniformizer of $\bbQ_{p,n}^{\opn{cycl}}$, and $\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(\pi_{n+1})=\pi_n$.
 
-For an element $a$ of $\bbQ_{p,n}^{\opn{cycl},\times}$, choose $x=(a,x^{(1)},\cdots,)\in\bbC_p^\flat$. This $x$ is uniquely determined by $a$ up to $\varepsilon^u$ with $u\in\bbZ_p$. Therefore if $g\in\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$, then
+For an element $a$ of $\bbQ_{p,n}^{\opn{cycl},\times}$, choose $x=(a,x^{(1)},\cdots,)\in\bbC_p^\flat$. This $x$ is uniquely determined by $a$ up to $\varepsilon^u$ with $u\in\bbZ_p$. Therefore, if $g\in\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$, then
 $g(x)/x=\varepsilon^{c(g)}$, with $c(g)\in\bbZ_p$. This gives a $1$-cocycle $c$ on $\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$ with values in $\bbZ_p(1)$ and defines the Kummer map
 $$\kappa\colon \bbQ_{p,n}^{\opn{cycl},\times}\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
 By Kummer theory, we have
-$$H^1(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1))\cong\bbZ_p\cdot\kappa(\pi_n)\oplus \kappa\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\right).$$
+$$H^1(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1))\cong\bbZ_p\cdot\kappa(\pi_n)\oplus \kappa\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times\right).$$
 On the other hand, one can verify that the diagram
 $$\begin{tikzcd}
         \bbQ_{p,n}^{\opn{cycl},\times}\ar[r,"\kappa"]\ar[d,"\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n+1}^{\opn{cycl}}}"]&H^1\left(\scrG_{\bbQ_{p,n+1}^{\opn{cycl}}},\bbZ_p(1)\right)\ar[d,"\opn{cores}"]\\
@@ -442,31 +442,43 @@ $$\begin{tikzcd}
 commutes, which induces a map
 $$\kappa\colon \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\lto H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))$$
 and consequently an isomorphism
-$$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\bbQ_{p,n}^{\opn{cycl},\times}\right).$$
+$$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times\right).$$
 
 \subsection{Main theorem}
 The main theorem of this thesis is the following:
-\begin{theorem}[Explicit reciprocity law]
+\begin{theorem}[Explicit reciprocity law]\label{thm:main}
     The following diagram is commutative:
     $$\begin{tikzcd}
-            \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
+            \varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
             &\calD(\bbZ_p(1))^{\psi=1}&
         \end{tikzcd}.$$
 \end{theorem}
 
-\begin{remark}
+\begin{remark}\label{rmk:23241}
     Let $a\geq 2$ be an integer that coprime to $p$. Recall that the element
     $$\bfc_n(a)=\frac{\exp(-a\cdot2\pi i/p^n)-1}{\exp(-2\pi i/p^n)-1}\in\bbQ(\zeta_{p^n})$$
     is a cyclotomic unit in $\calO_{\bbQ_(\zeta_{p^n})}$ and the series $\bfc(a)=(u_n)_{n\geq 1}$ lies in $\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$. It is easy to verify that the Coleman power series of $\bfc(a)$ is given by
     $$f_{\bfc(a)}=\frac{(1+T)^{-a}-1}{(1+T)^{-1}-1},$$
     which satisfies
     $$\frac{\partial f_{\bfc(a)}}{f_{\bfc(a)}}=\frac{a}{(1+T)^a-1}-\frac{1}{T}.$$
-    This is the Amice transform of the measure $\mu_a$ we used to construct the Kubota-Leopoldt zeta function (cf. \cite[Proposition 1.6]{Col}). Therefore the reciprocity law shows that $\opn{Exp}*$ products Kubota-Leopoldt zeta function from the system of cyclotomic units.
+    This is the Amice transform of the measure $\mu_a$ we used to construct the Kubota-Leopoldt zeta function (cf. \cite[Proposition 1.6]{colmez_fonction_nodate}). Therefore, the reciprocity law shows that $\opn{Exp}^*$ products the Kubota-Leopoldt zeta function from the system of cyclotomic units.
 \end{remark}
 \begin{remark}
-    The example in [] is part of a big conjectural picture. For $V$ a fixed representation of $\scrG_\bbQ$, then conjecturally
+    The example in \Cref{rmk:23241} is part of a big conjectural picture. For $V$ a fixed representation of $\scrG_\bbQ$, then conjecturally
     $$\{\text{compatible system of global elements of $V$}\}\lto H_{\opn{Iw}}^1(\bbQ,V)$$
     $$\lto H_{\opn{Iw}}^1(\bbQ_p,V)\xlto{\opn{Exp}^*}\calD(V)^{\psi=1}\xlto[\text{transform}]{\text{Amice}} p\text{-adic $L$-functions}.$$
 \end{remark}
+
+\begin{proof}[Sketch of proof of \Cref{thm:main}]
+    Let $u\in\varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)$  and $g\longmapsto C_n(g)$ be the image of $u$ under the composition of
+    $$\varprojlim_n\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}-\{0\}\right)\xlto{\kappa}H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+    Let $y\in\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)$, let $g\longmapsto C_n^\prime(g)$ be the image of $y$ under the composition of 
+    $$\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)\xlto{\opn{Log}^*}H^1_{\opn{Iw}}(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+    To prove the theorem, it is enough to show that $C_n=C_n^\prime$  for all $n$ implies $y=\frac{\partial f_u}{f_u}(\pi)$.
+
+    For $C_n^\prime$, by \Cref{thm:28958} we have
+    $$C_n^\prime(g)=\frac{\log \chi(\gamma_n)}{p^n}\left(
+    \frac{\chi(g)-1}{\chi(\gamma_n)-1}y-(\chi(g)g-1)b_n\right).$$
+\end{proof}
 \printbibliography
 \end{document}
