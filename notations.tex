@@ -9,23 +9,7 @@
 }
 \makeatother
 
-\usepackage{iftex}
-\ifpdftex
-\usepackage[T1]{fontenc}
-\pdfmapline{+tamafont < tamafont.ttf <T1-WGL4.enc}
-\DeclareMathAlphabet{\mathtama}{T1}{tamafont}{m}{n}
-\newcommand{\tama}{\mathtama{0}}
-\fi
-\ifxetex
-\usepackage{fontspec}
-\newfontfamily{\tamafont}{tamafont}[
-  NFSSFamily=tamafont,
-  Path=./,
-  Extension=.ttf
-]
-\DeclareSymbolFont{tmf}{TU}{tamafont}{m}{n}
-\DeclareMathSymbol{\tama}{0}{tmf}{"30}
-\fi
+
 \usepackage{mathrsfs}
 \usepackage{xparse}
 \ExplSyntaxOn
@@ -50,7 +34,7 @@
 \definealphabet{cal}{\mathcal}{A}{Z}
 \definealphabet{frak}{\mathfrak}{A}{z}
 \definealphabet{rm}{\mathrm}{A}{z}
-\definealphabet{bf}{\mathbf}{A}{Z}
+\definealphabet{bf}{\mathbf}{A}{z}
 \definealphabet{scr}{\mathscr}{A}{Z}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\proj}{proj}
@@ -85,3 +69,5 @@
 
 \newcommand{\Frac}{\opn{Frac}}
 \newcommand{\id}{\opn{id}}
+
+\newcommand*\dif{\mathop{}\!\mathrm{d}}

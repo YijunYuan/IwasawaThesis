@@ -1,12 +1,10 @@
 % !TEX root
-% !TEX program = pdflatex
+% !TEX program = xelatex
 % !BIB program = biber
 
-\pdfcompresslevel 0
-\pdfobjcompresslevel 0
 %\special{dvipdfmx:config z 0}
 \documentclass[a4paper,oneside]{amsart}
-\usepackage[utf8]{inputenc}
+\usepackage[scheme=plain]{ctex}
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Fonts, symbols and notations
 \input{notations.tex}
@@ -99,8 +97,6 @@
 \allowdisplaybreaks
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Temporary
-\usepackage{CJKutf8}
-\newcommand{\Chinese}[1]{\begin{CJK*}{UTF8}{gbsn}#1\end{CJK*}}
 %\usepackage[scheme=plain]{ctex}
 %\usepackage[notcite]{showkeys}
 
@@ -122,7 +118,7 @@
 
 
 \usepackage{orcidlink}
-\author{Yijun Yuan\textsuperscript{\orcidlink{0000-0001-6571-6980}} 2022311357}
+\author{袁轶君\textsuperscript{\orcidlink{0000-0001-6571-6980}} 2022311357}
 \address{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
 \email{941201yuan@gmail.com}
 \begin{document}
@@ -264,7 +260,7 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
     where $x_i=\psi^n([\varepsilon]^{-i}x)$. It is easy to see if $F(\pi)$ belongs to $\bbZ_p\llbracket\pi\rrbracket$, $F_i(\pi)$ belongs to $\bbZ_p\llbracket\pi\rrbracket$ for all $i$. Then $\psi(\bbF_p\llbracket\bar{\pi}\rrbracket)\subset\bbF_p\llbracket\bar{\pi}\rrbracket$, hence $\psi(\bbZ_p\llbracket\pi\rrbracket)\subset\bbZ_p\llbracket\pi\rrbracket$.
 \end{corollary}
 
-\begin{example}
+\begin{example}\label{eg:57892}
     Let $D=\bfA_{\bbQ_p}\supset \bbZ_p\llbracket \pi\rrbracket$ be the trivial $(\varphi,\Gamma)$-module. Then for $x=F(\pi)\in\bbZ_p\llbracket\pi\rrbracket$, $\varphi(x)=F((1+\pi)^p-1)$. Write
     $$F(\pi)=\sum_{i=0}^{p-1}(1+\pi)^i F_i((1+\pi)^p-1),$$
     then $\psi(F(\pi))=F_0(\pi)$. Consequently, $\psi$ is continuous for the weak topology.
@@ -278,7 +274,7 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
             =                 & \frac{1}{p}\sum_{z^p=1}F(z(1+\pi)-1).
         \end{aligned}
     \end{equation}
-    This shows that this $\psi$-operator is the same one as in [Coates-Sujatha].
+    This shows that this $\psi$-operator is the same one as in \cite[Proposition 2.2.3]{coates_cyclotomic_2006}.
 \end{example}
 
 
@@ -401,12 +397,6 @@ The inverse of the isomorphism \Cref{eq:43260} in \Cref{thm:15019}, which we den
     \end{enumerate}
 \end{theorem}
 \section{The explicit reciprocity law: a baby case}
-In this section, we will explain and prove the commutativity of the following diagram:
-$$\begin{tikzcd}
-        \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
-        &\calD(\bbZ_p(1))^{\psi=1}&
-    \end{tikzcd},$$
-which we call explicit reciprocity law.
 \subsection{The module $\calD(\bbZ_p(1))^{\psi=1}$ and Coleman's power series}
 The module $\bbZ_p(1)$ is just $\bbZ_p$ with the action of $\scrG_{\bbQ_p}$ given by $g\cdot x=\chi(g)x$ for every $g\in\scrG_{\bbQ_p}$ and $x\in\bbZ_p(1)$. One has
 $$\calD(\bbZ_p(1))=\left(\bfA\otimes\bbZ_p(1)\right)^{H_{\bbQ_p}}=\bfA_{\bbQ_p}(1),$$
@@ -425,9 +415,16 @@ with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on
     [TBA]
 \end{proof}
 
-Let us recall two results that we have learned in the lesson.
-\begin{theorem}[Coleman's power series]
-    Let $u=(u_n)_{n\geq 1}\in\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
+\begin{remark}
+    Under the map $\mu\longmapsto\int_{\bbZ_p}[\varepsilon]^x\mu$, $\left(\pi\bfA_{\bbQ_p}^+\right)^{\psi=0}$ is the image of measures with support in $\bbZ_p^\times$ (for $\psi=0$) and $\int_{\bbZ_p^\times}\mu=0$.
+\end{remark}
+
+Besides that, let us recall two results that we have learned in the lesson.
+\begin{theorem}[Coleman's power series]\leavevmode\begin{enumerate}
+        \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
+        \item (cf. \cite[Lemma 2.4.5]{coates_cyclotomic_2006}, \Cref{eg:57892}) Let $\partial=(1+T)\frac{\dif}{\dif T}$. Then $\frac{\partial f_u}{f_u}(\pi)\in\left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$.
+    \end{enumerate}
+
 \end{theorem}
 \subsection{Input from Kummer theory}
 Recall that we set $\varepsilon=(1,\zeta_p,\cdots,\zeta_{p^n},\cdots)\in\bfE_{\bbQ_p}$. If for every $n\geq 1$, we set $\pi_n=\zeta_{p^n}-1$, then $\pi_n$ is a uniformizer of $\bbQ_{p,n}^{\opn{cycl}}$, and $\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(\pi_{n+1})=\pi_n$.
@@ -446,5 +443,30 @@ commutes, which induces a map
 $$\kappa\colon \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\lto H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))$$
 and consequently an isomorphism
 $$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\bbQ_{p,n}^{\opn{cycl},\times}\right).$$
+
+\subsection{Main theorem}
+The main theorem of this thesis is the following:
+\begin{theorem}[Explicit reciprocity law]
+    The following diagram is commutative:
+    $$\begin{tikzcd}
+            \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
+            &\calD(\bbZ_p(1))^{\psi=1}&
+        \end{tikzcd}.$$
+\end{theorem}
+
+\begin{remark}
+    Let $a\geq 2$ be an integer that coprime to $p$. Recall that the element
+    $$\bfc_n(a)=\frac{\exp(-a\cdot2\pi i/p^n)-1}{\exp(-2\pi i/p^n)-1}\in\bbQ(\zeta_{p^n})$$
+    is a cyclotomic unit in $\calO_{\bbQ_(\zeta_{p^n})}$ and the series $\bfc(a)=(u_n)_{n\geq 1}$ lies in $\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$. It is easy to verify that the Coleman power series of $\bfc(a)$ is given by
+    $$f_{\bfc(a)}=\frac{(1+T)^{-a}-1}{(1+T)^{-1}-1},$$
+    which satisfies
+    $$\frac{\partial f_{\bfc(a)}}{f_{\bfc(a)}}=\frac{a}{(1+T)^a-1}-\frac{1}{T}.$$
+    This is the Amice transform of the measure $\mu_a$ we used to construct the Kubota-Leopoldt zeta function (cf. \cite[Proposition 1.6]{Col}). Therefore the reciprocity law shows that $\opn{Exp}*$ products Kubota-Leopoldt zeta function from the system of cyclotomic units.
+\end{remark}
+\begin{remark}
+    The example in [] is part of a big conjectural picture. For $V$ a fixed representation of $\scrG_\bbQ$, then conjecturally
+    $$\{\text{compatible system of global elements of $V$}\}\lto H_{\opn{Iw}}^1(\bbQ,V)$$
+    $$\lto H_{\opn{Iw}}^1(\bbQ_p,V)\xlto{\opn{Exp}^*}\calD(V)^{\psi=1}\xlto[\text{transform}]{\text{Amice}} p\text{-adic $L$-functions}.$$
+\end{remark}
 \printbibliography
 \end{document}
