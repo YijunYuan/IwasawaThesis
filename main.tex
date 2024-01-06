@@ -4,7 +4,7 @@
 
 %\special{dvipdfmx:config z 0}
 \documentclass[a4paper,oneside]{amsart}
-\usepackage[scheme=plain]{ctex}
+%\usepackage[scheme=plain]{ctex}
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Fonts, symbols and notations
 \input{notations.tex}
@@ -118,7 +118,7 @@
 
 
 \usepackage{orcidlink}
-\author{袁轶君\textsuperscript{\orcidlink{0000-0001-6571-6980}} 2022311357}
+\author{Yijun Yuan\textsuperscript{\orcidlink{0000-0001-6571-6980}} 2022311357}
 \address{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
 \email{941201yuan@gmail.com}
 \begin{document}
@@ -469,16 +469,47 @@ The main theorem of this thesis is the following:
     $$\lto H_{\opn{Iw}}^1(\bbQ_p,V)\xlto{\opn{Exp}^*}\calD(V)^{\psi=1}\xlto[\text{transform}]{\text{Amice}} p\text{-adic $L$-functions}.$$
 \end{remark}
 
+\begin{proposition}
+
+\end{proposition}
+
 \begin{proof}[Sketch of proof of \Cref{thm:main}]
     Let $u\in\varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)$  and $g\longmapsto C_n(g)$ be the image of $u$ under the composition of
     $$\varprojlim_n\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}-\{0\}\right)\xlto{\kappa}H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
-    Let $y\in\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)$, let $g\longmapsto C_n^\prime(g)$ be the image of $y$ under the composition of 
+    Let $y\in\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)$, let $g\longmapsto C_n^\prime(g)$ be the image of $y$ under the composition of
     $$\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)\xlto{\opn{Log}^*}H^1_{\opn{Iw}}(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
     To prove the theorem, it is enough to show that $C_n=C_n^\prime$  for all $n$ implies $y=\frac{\partial f_u}{f_u}(\pi)$.
 
     For $C_n^\prime$, by \Cref{thm:28958} we have
     $$C_n^\prime(g)=\frac{\log \chi(\gamma_n)}{p^n}\left(
-    \frac{\chi(g)-1}{\chi(\gamma_n)-1}y-(\chi(g)g-1)b_n\right).$$
+        \frac{\chi(g)-1}{\chi(\gamma_n)-1}y-(\chi(g)g-1)b_n\right),$$
+    where $b_n\in\bfA$ is a solution of $(\varphi-1)b_n=(\chi(\gamma_n)\gamma_n-1)^{-1}(\varphi-1)y$ and $(\varphi-1)y\in\bfA_{\bbQ_p}^{\psi=0}$.
+
+    For $C_n$, choose $x_n=(x_n^{(0)},\cdots,x^{(k)},\cdots)\in\widetilde{\bfE}^+$ such that $x_n^{(0)}=u_n$. Let $\tilde{u}_n=[x_n]$, then
+    $$\frac{g(\tilde{u}_n)}{\tilde{u}_n}=[\varepsilon]^{C_n(g)}.$$
+
+    Let $h=y-\frac{\partial f_u}{f_u}$, then $\psi(h)=h$ and consequently
+    \begin{equation}\label{eq:24892}
+        p^{-k}\Tr_{\bbQ_{p,n+k}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(h(\pi_{n+k}))=h(\pi_n).
+    \end{equation}
+
+    It can be shown (cf. \cite[Proposition 7.5.2]{colmez_fontaines_nodate}) that there exists $k\in\bbZ$ and $b_n^\prime,b_n^{\prime\prime}\in\calO_{\bbC_p}/p^n$ that
+    $$p^2C_n^\prime(g)=p^2\frac{\log\chi(\gamma_n)}{p^n}\cdot \frac{g-1}{\gamma_n-1}y(\pi_{n+k})+(g-1)b_n^\prime$$
+    and
+    $$p^2C_n(g)=p^2\frac{\log\chi(g)}{p^n}\cdot \frac{\partial f_u}{f_u}y(\pi_n)+(g-1)b_n^{\prime\prime}.$$
+
+    Therefore if we set
+    $$x=p^2\frac{\log\chi(\gamma_n)}{p^n}\left(y(\pi_{n+k})-\frac{\partial f_u}{f_u}(\pi_n)\right) \text{ and }b=b_n^\prime-b_n^{\prime\prime},$$
+    then
+    $$\frac{g-1}{\gamma_n-1}x+(g-1)b=p^2(C_n^\prime(g)-C_n(g))=0.$$
+
+    By \cite[Proposition 7.5.2]{colmez_fontaines_nodate}, this implies that there exists a constant $c\in\bbN$ that
+    $$p^2\frac{\log\chi(\gamma_n)}{p^n}\left(y(\pi_{n})-\frac{\partial f_u}{f_u}(\pi_n)\right)\in p^{n-c}\calO_{\bbQ_{p,n}^{\opn{cycl}}},$$
+    i.e.
+    $$h(\pi_n)\in p^{n-c-2}\calO_{\bbQ_{p,n}^{\opn{cycl}}}.$$
+    Since $p^{-k}\Tr_{\bbQ_{p,n+k}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}\calO_{\bbQ_{p,n+k}^{\opn{cycl}}}\subset \calO_{\bbQ_{p,n}^{\opn{cycl}}}$, by \Cref{eq:24892} one obtains
+    $$h(\pi_i)=p^{-(n-i)}\Tr_{\bbQ_{p,n}^{\opn{cycl}}/\bbQ_{p,i}^{\opn{cycl}}}(h(\pi_n))\in p^{n-c-2}\calO_{\bbQ_{p,i}^{\opn{cycl}}}$$
+    for all $i\geq 0$ and $n\geq i$. This implies that $h(\pi_i)=0$ for all $i\geq 0$ and hence $h=0$.
 \end{proof}
 \printbibliography
 \end{document}
