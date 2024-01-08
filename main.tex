@@ -114,7 +114,7 @@
   \SK@def\Cref#1{\SK@\SK@@ref{#1}\SK@Cref{#1}}%
 \makeatother
 
-\title{Iwasawa cohomology of $p$-adic Galois representations and explicit reciprocity law}
+\title{Local Iwasawa cohomology and an explicit reciprocity formula}
 
 
 \usepackage{orcidlink}
@@ -140,10 +140,12 @@ In this notes, we do not need the full power of sAPF extensions (which we will n
 \end{definition}
 \begin{theorem}[Fontaine-Wintenberger]\leavevmode
     \begin{enumerate}
-        \item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining [] and [], $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+        \item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining 
+        $$(x_n)_{n\geq 0}+(y_n)_{n\geq 0}\coloneqq \left(\lim_{j\to +\infty}\calN_{\bbQ_{p,n+j}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(x_{n+j}+y_{n+j})\right)_{n\geq 0}$$
+        and componentwise multiplication, $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
               $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
         \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
-        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$ by the formula [].
+        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$.
         \item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
     \end{enumerate}
 \end{theorem}
@@ -402,7 +404,7 @@ The module $\bbZ_p(1)$ is just $\bbZ_p$ with the action of $\scrG_{\bbQ_p}$ give
 $$\calD(\bbZ_p(1))=\left(\bfA\otimes\bbZ_p(1)\right)^{H_{\bbQ_p}}=\bfA_{\bbQ_p}(1),$$
 with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on $\bfA_{\bbQ_p}$ by $\gamma\cdot f(\pi)=\chi(\gamma)f((1+\pi)^{\chi(\gamma)}-1)$.
 
-\begin{proposition}\leavevmode
+\begin{proposition}[{\cite[Proposition 7.1.1]{colmez_fontaines_nodate}}]\leavevmode
     \begin{enumerate}
         \item One has isomorphism $\bfA_{\bbQ_p}^{\psi=1}=\bbZ_p\cdot \frac{1}{\pi}\oplus \left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$;
         \item There exists an exact sequence
@@ -411,16 +413,13 @@ with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on
                   \end{tikzcd}$$
     \end{enumerate}
 \end{proposition}
-\begin{proof}
-    [TBA]
-\end{proof}
 
 \begin{remark}
     Under the map $\mu\longmapsto\int_{\bbZ_p}[\varepsilon]^x\mu$, $\left(\pi\bfA_{\bbQ_p}^+\right)^{\psi=0}$ is the image of measures with support in $\bbZ_p^\times$ (for $\psi=0$) and $\int_{\bbZ_p^\times}\mu=0$.
 \end{remark}
 
 Besides that, let us recall two results that we have learned in the lesson.
-\begin{theorem}[Coleman's power series]\leavevmode\begin{enumerate}
+\begin{theorem}[Coleman power series]\leavevmode\begin{enumerate}
         \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\left(\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}\right)-\{0\}$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
         \item (cf. \cite[Lemma 2.4.5]{coates_cyclotomic_2006}, \Cref{eg:57892}) Let $\partial=(1+T)\frac{\dif}{\dif T}$. Then $\frac{\partial f_u}{f_u}(\pi)\in\left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$.
     \end{enumerate}
@@ -446,14 +445,17 @@ $$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varp
 
 \subsection{Main theorem}
 The main theorem of this thesis is the following:
-\begin{theorem}[Explicit reciprocity law]\label{thm:main}
+\begin{theorem}[{\cite[Proposition V.3.2(iii)]{cherbonnier_theorie_1999}\cite[Theorem 7.4.1]{colmez_fontaines_nodate}\cite[Theorem 6.2]{schneiderCoatesWilesHomomorphisms2016}}\protect\footnotemark]\label{thm:main}
+    \footnotetext{\cite[Theorem 6.2]{schneiderCoatesWilesHomomorphisms2016} generalizes this result to the Lubing-Tate setting.}
     The following diagram is commutative:
     $$\begin{tikzcd}
             \varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
             &\calD(\bbZ_p(1))^{\psi=1}&
         \end{tikzcd}.$$
 \end{theorem}
-
+\begin{remark}[{\cite[19]{venjakobExplicitReciprocityLaws2023}}]
+    Colmez \cite[Section 7.4]{colmez_fontaines_nodate} calls this already an explicit reciprocity law, probably as the determination of the Kummer map is achieved by using the cup-product pairing, at least in \cite[Section 6]{schneiderCoatesWilesHomomorphisms2016}. Moreover, the latter is calculated by the explicit Schmid-Witt formula as had been noticed already by Fontaine in §4.4 of his letter to Perrin Riou \cite{perrin-riou_theorie_1994}.
+\end{remark}
 \begin{remark}\label{rmk:23241}
     Let $a\geq 2$ be an integer that coprime to $p$. Recall that the element
     $$\bfc_n(a)=\frac{\exp(-a\cdot2\pi i/p^n)-1}{\exp(-2\pi i/p^n)-1}\in\bbQ(\zeta_{p^n})$$
@@ -469,9 +471,6 @@ The main theorem of this thesis is the following:
     $$\lto H_{\opn{Iw}}^1(\bbQ_p,V)\xlto{\opn{Exp}^*}\calD(V)^{\psi=1}\xlto[\text{transform}]{\text{Amice}} p\text{-adic $L$-functions}.$$
 \end{remark}
 
-\begin{proposition}
-
-\end{proposition}
 
 \begin{proof}[Sketch of proof of \Cref{thm:main}]
     Let $u\in\varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)$  and $g\longmapsto C_n(g)$ be the image of $u$ under the composition of
