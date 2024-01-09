@@ -1,13 +1,7 @@
 \let\opn\operatorname
 
-\usepackage{mathtools,amssymb,textcomp,extarrows,bm,mleftright,graphicx,stmaryrd,scalerel}
+\usepackage{mathtools,amssymb,textcomp,extarrows,bm,mleftright,stmaryrd}
 \mleftright
-
-\makeatletter
-\AtBeginDocument{%
- \let\glb@currsize\relax
-}
-\makeatother
 
 
 \usepackage{mathrsfs}
@@ -23,12 +17,6 @@
      }
    }
  }
- \makeatletter\providecommand*\xLongrightleftharpoons[2][]{\mathrel{%
-  \raise.22ex\hbox{%
-    $\ext@arrow 9999\MT_rightharpoonup_fill:{\phantom{\Longleftrightarrow}}{#2}$}%
-  \setbox0=\hbox{%
-    $\ext@arrow 9999\MT_leftharpoondown_fill:{#1}{\phantom{\Longleftrightarrow}}$}%
-  \kern-\wd0 \lower.22ex\box0}}
 \ExplSyntaxOff
 \definealphabet{bb}{\mathbb}{A}{Z}
 \definealphabet{cal}{\mathcal}{A}{Z}
@@ -37,11 +25,7 @@
 \definealphabet{bf}{\mathbf}{A}{z}
 \definealphabet{scr}{\mathscr}{A}{Z}
 \DeclareMathOperator{\Gal}{Gal}
-\DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\cycl}{cycl}
-\DeclareMathOperator{\Kum}{Kum}
-\DeclareMathOperator{\FT}{FT}
-\DeclareMathOperator{\sep}{sep}
 \DeclareMathOperator{\Rep}{\mathbf{Rep}}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\Supp}{Supp}
@@ -51,21 +35,12 @@
 \let\xlto\xlongrightarrow
 
 
-\usepackage{environ,ifdraft}
-\ifdraft{
-    \NewEnviron{tikzcd}{\text{\includegraphics[draft,width=3cm]{example-image}}}
-}{
-    \usepackage{tikz}
+\usepackage{tikz-cd}
 \usetikzlibrary{decorations.pathmorphing,cd}
-}
-
-
-\usepackage{dsfont}
-\newcommand{\bbone}{\mathds{1}}
 
 \DeclareMathOperator{\Ker}{Ker}
 
-\usepackage[new]{old-arrows}
+%\usepackage[new]{old-arrows}
 
 \newcommand{\Frac}{\opn{Frac}}
 \newcommand{\id}{\opn{id}}

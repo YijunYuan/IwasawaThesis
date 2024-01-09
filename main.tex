@@ -7,8 +7,54 @@
 %\usepackage[scheme=plain]{ctex}
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Fonts, symbols and notations
-\input{notations.tex}
-%\usepackage{standalone}
+\let\opn\operatorname
+
+\usepackage{mathtools,amssymb,textcomp,extarrows,bm,mleftright,stmaryrd}
+\mleftright
+
+
+\usepackage{mathrsfs}
+\usepackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand{\definealphabet}{mmmm}
+ {% #1 = prefix, #2 = command, #3 = start, #4 = end
+  \int_step_inline:nnn { `#3 } { `#4 }
+   {
+    \cs_new_protected:cpx { #1 \char_generate:nn { ##1 }{ 11 } }
+     {
+      \exp_not:N #2 { \char_generate:nn { ##1 } { 11 } }
+     }
+   }
+ }
+\ExplSyntaxOff
+\definealphabet{bb}{\mathbb}{A}{Z}
+\definealphabet{cal}{\mathcal}{A}{Z}
+\definealphabet{frak}{\mathfrak}{A}{z}
+\definealphabet{rm}{\mathrm}{A}{z}
+\definealphabet{bf}{\mathbf}{A}{z}
+\definealphabet{scr}{\mathscr}{A}{Z}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\cycl}{cycl}
+\DeclareMathOperator{\Rep}{\mathbf{Rep}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\im}{im}
+\newcommand{\lto}{\longrightarrow}
+\newcommand{\wtilde}[1]{\widetilde{#1}}
+\let\xlto\xlongrightarrow
+
+
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing,cd}
+
+\DeclareMathOperator{\Ker}{Ker}
+
+%\usepackage[new]{old-arrows}
+
+\newcommand{\Frac}{\opn{Frac}}
+\newcommand{\id}{\opn{id}}
+
+\newcommand*\dif{\mathop{}\!\mathrm{d}}
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Reference and hyperlink
 \usepackage[pdfencoding=auto,psdextra]{hyperref}
@@ -124,33 +170,33 @@
 \begin{document}
 \maketitle
 \tableofcontents
-Throughout this note, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\opn{cycl}}=K(\zeta_{p^n})$, $K^{\opn{cycl}}=\bigcup_n K_n^{\opn{cycl}}$ be the cyclotomic extension over $K$.
+Throughout this note, $p\geq 3$ is a prime number. Let $K$ be a $p$-adic field. Let $(\zeta_{p^n})_{k\geq 1}$ be a system of norm compatible system of $p^n$-th root of unity in $\overline{\bbQ}_p$ and let $K_n^{\cycl}=K(\zeta_{p^n})$, $K^{\cycl}=\bigcup_n K_n^{\cycl}$ be the cyclotomic extension over $K$.
 
-For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Galois group of $F$. In particular, denote by $H_K=\scrG_{K^{\opn{cycl}}}$ and $\Gamma_K=\scrG_K/H_K=\opn{Gal}(K^{\opn{cycl}}/K)$.
+For any field $F$, denote by $\scrG_F=\opn{Gal}(\overline{F}/F)$ the absolute Galois group of $F$. In particular, denote by $H_K=\scrG_{K^{\cycl}}$ and $\Gamma_K=\scrG_K/H_K=\opn{Gal}(K^{\cycl}/K)$.
 \section{Theory of $(\varphi,\Gamma)$-modules}
 The theory of \'etale $(\varphi,\Gamma)$-modules, which was introduced by Fontaine in the early 1990s, is used to study the $p$-adic Galois representations. These are modules over certain period rings, equipped with the semi-linear action of a Frobenius map and $\Gamma_K$ which commute with each other.
 
 \subsection{The field of norms and its lift to characteristic $0$}
 The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called field of norms (corps des norms), which was introduced by Fontaine and Wintenberger in the late 1970s (cf. \cite{fontaine_extensions_1979,fontaine_corps_1979,wintenberger_corps_1983}). Given a so-called strictly arithmetically profinite (sAPF) extension (cf. \cite[D\'efinitions 1.2.1]{wintenberger_corps_1983}) of $p$-adic field $K_\infty/K$, the field of norms associated with this extension, which is a field of characteristic $p$, has the same absolute Galois group as $K_\infty$. This theory also motivates Scholze's theory of perfectoid spaces (cf. \cite[Theorem 1.1]{scholze_perfectoid_2012}).
 
-In this notes, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\opn{cycl}}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen (cf. \cite{sen_ramification_1972}): if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
+In this notes, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\cycl}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen (cf. \cite{sen_ramification_1972}): if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
 \begin{definition}[{\cite[Section 2.1.1]{wintenberger_corps_1983}}]
-    Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\opn{cycl}}\right)^\times\cup\{0\},$$
-    where the transition map $\calN_n:\left(K_{n+1}^{\opn{cycl}}\right)^\times\lto \left(K_n^{\opn{cycl}}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\opn{cycl}}/K$.
+    Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n \left(K_n^{\cycl}\right)^\times\cup\{0\},$$
+    where the transition map $\calN_n:\left(K_{n+1}^{\cycl}\right)^\times\lto \left(K_n^{\cycl}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\cycl}/K$.
 \end{definition}
 \begin{theorem}[Fontaine-Wintenberger]\leavevmode
     \begin{enumerate}
         \item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining 
-        $$(x_n)_{n\geq 0}+(y_n)_{n\geq 0}\coloneqq \left(\lim_{j\to +\infty}\calN_{\bbQ_{p,n+j}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(x_{n+j}+y_{n+j})\right)_{n\geq 0}$$
-        and componentwise multiplication, $X_K(K^{\opn{cycl}})$ is a complete discrete valued field with valuation given by
+        $$(x_n)_{n\geq 0}+(y_n)_{n\geq 0}\coloneqq \left(\lim_{j\to +\infty}\calN_{\bbQ_{p,n+j}^{\cycl}/\bbQ_{p,n}^{\cycl}}(x_{n+j}+y_{n+j})\right)_{n\geq 0}$$
+        and componentwise multiplication, $X_K(K^{\cycl})$ is a complete discrete valued field with valuation given by
               $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
-        \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\opn{cycl}})$ is canonically isomorphic to $H_K$.
-        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\opn{cycl}})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$.
-        \item The field $X_K(K^{\opn{cycl}})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
+        \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\cycl})$ is canonically isomorphic to $H_K$.
+        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\cycl})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$.
+        \item The field $X_K(K^{\cycl})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
     \end{enumerate}
 \end{theorem}
 \begin{definition}
-    Let $\bfE_K$ be the image of $X_K(K^{\opn{cycl}})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
+    Let $\bfE_K$ be the image of $X_K(K^{\cycl})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
 \end{definition}
 \begin{remark}
     With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bfE_{\bbQ_p}$.
@@ -282,18 +328,18 @@ It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-mo
 
 \section{Iwasawa cohomology of $p$-adic representations}
 \subsection{Preliminaries on Iwasawa algebra}
-For any $n\geq $, we take a topological generator $\gamma_n$ of the Galois group $\Gamma_n=\opn{Gal}(K^{\opn{cycl}}/K_n^{\opn{cycl}})$, satisfying $\gamma_n=\gamma_1^{p^{n-1}}$. The Iwasawa algebra
+For any $n\geq $, we take a topological generator $\gamma_n$ of the Galois group $\Gamma_n=\opn{Gal}(K^{\cycl}/K_n^{\cycl})$, satisfying $\gamma_n=\gamma_1^{p^{n-1}}$. The Iwasawa algebra
 $$\bbZ_p\llbracket\Gamma_K\rrbracket\coloneqq \varprojlim_n \bbZ_p[\Gamma_K/\Gamma_n]$$
 is isomorphic to $\bbZ_p\llbracket T\rrbracket$ with the $(p,T)$-adic topology by sending $T$ to $\gamma-1$. We have
-$$\bbZ_p\llbracket \Gamma_K\rrbracket/(\gamma_n-1)=\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)].$$
-Furthermore, $\scrG_K$ acts on $\bbZ_p\llbracket\Gamma_K\rrbracket$ and $\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]$ through $\Gamma_K$.
+$$\bbZ_p\llbracket \Gamma_K\rrbracket/(\gamma_n-1)=\bbZ_p[\opn{Gal}(K_n^{\cycl}/K)].$$
+Furthermore, $\scrG_K$ acts on $\bbZ_p\llbracket\Gamma_K\rrbracket$ and $\bbZ_p[\opn{Gal}(K_n^{\cycl}/K)]$ through $\Gamma_K$.
 
 
 \subsection{Iwasawa cohomology}
 \begin{definition}[{\cite{perrin-riou_theorie_1994}, \cite[D\'efinition II.1.1]{cherbonnier_theorie_1999}}]\leavevmode
     \begin{enumerate}
         \item If $V$ is a $\bbZ_p$-representation of $\scrG_K$, we define the Iwasawa cohomology of $V$ to be
-              $$H^i_{\opn{Iw}}(K,V)\coloneqq \varprojlim_n H^i(\scrG_{K_n^{\opn{cycl}}},V),$$
+              $$H^i_{\opn{Iw}}(K,V)\coloneqq \varprojlim_n H^i(\scrG_{K_n^{\cycl}},V),$$
               where the transition maps are the corestriction maps.
         \item If $V$ is a $\bbQ_p$-representation, we define the Iwasawa cohomology of $V$ to be
               $$H^i_{\opn{Iw}}(K,V)\coloneqq H^i_{\opn{Iw}}(K,T)\otimes_{\bbZ_p} \bbQ,$$
@@ -309,9 +355,9 @@ Furthermore, $\scrG_K$ acts on $\bbZ_p\llbracket\Gamma_K\rrbracket$ and $\bbZ_p[
     It reduces to the case that $V$ is a $\bbZ_p$-representation of $\scrG_K$.
 
     By using Shapiro lemma and viewing $V$ as a $\bbZ_p[\scrG_K]$-module, we have an isomorphism
-    $$H^i(\scrG_{K_n^{\opn{cycl}}},V)\cong H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]\otimes V).$$
+    $$H^i(\scrG_{K_n^{\cycl}},V)\cong H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\cycl}/K)]\otimes V).$$
     Thus
-    $$H^i_{\opn{Iw}}(K,V)\cong\varprojlim_n H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\opn{cycl}}/K)]\otimes V)=\varprojlim_n H^i(\scrG_K,\bbZ_p\llbracket\Gamma_K\rrbracket/(\gamma_n-1)\otimes V).$$
+    $$H^i_{\opn{Iw}}(K,V)\cong\varprojlim_n H^i(\scrG_K,\bbZ_p[\opn{Gal}(K_n^{\cycl}/K)]\otimes V)=\varprojlim_n H^i(\scrG_K,\bbZ_p\llbracket\Gamma_K\rrbracket/(\gamma_n-1)\otimes V).$$
 \end{proof}
 
 The main theorem of this section is the following:
@@ -363,10 +409,10 @@ The main theorem of this section is the following:
                             \end{tikzcd}.\end{equation}
               \end{enumerate}
               For $i=0$,
-              $$H^0(K,V)=\varprojlim_{\opn{Tr}}V^{\scrG_{K_n}^{\opn{cycl}}},$$
-              where $\opn{Tr}$ is the trace map. Since $V^{\scrG_{K_n^{\opn{cycl}}}}$ is increasing and $V$ is of finite-dimensional, the sequence is stationary for $n>n_0$, where $n_0>\!\!>0$. Then $\opn{Tr}_{K_{n+1}^{\opn{\cycl}}/K_n^{\opn{cycl}}}$ is just multiplication by $p$ for $n\geq n_0$. Since $V$ does not contain $p$-divisible elements, this shows that $\varprojlim_{\opn{Tr}}V^{\scrG_{K_n^{\opn{cycl}}}}=0$.
+              $$H^0(K,V)=\varprojlim_{\opn{Tr}}V^{\scrG_{K_n}^{\cycl}},$$
+              where $\opn{Tr}$ is the trace map. Since $V^{\scrG_{K_n^{\cycl}}}$ is increasing and $V$ is of finite-dimensional, the sequence is stationary for $n>n_0$, where $n_0>\!\!>0$. Then $\opn{Tr}_{K_{n+1}^{\opn{\cycl}}/K_n^{\cycl}}$ is just multiplication by $p$ for $n\geq n_0$. Since $V$ does not contain $p$-divisible elements, this shows that $\varprojlim_{\opn{Tr}}V^{\scrG_{K_n^{\cycl}}}=0$.
 
-              For $i=2$, by replacing $K$ with $K_n^{\opn{cycl}}$, one has an isomorphism $$H^2(\scrG_{K_n^{\opn{cycl}}},V)\cong \frac{\calD(V)}{\psi-1}/(\gamma_n-1).$$
+              For $i=2$, by replacing $K$ with $K_n^{\cycl}$, one has an isomorphism $$H^2(\scrG_{K_n^{\cycl}},V)\cong \frac{\calD(V)}{\psi-1}/(\gamma_n-1).$$
               With this identification, the corestriction map is induced by
               the identity map $\opn{Id}$ on $\calD(V)$. Since $\frac{\calD(V)}{\psi-1}$ is compact (cf. \cite[Proposition I.5.6]{cherbonnier_theorie_1999}), one concludes that
               $$H^2_{\opn{Iw}}(K,V)=\varprojlim_{n}\frac{\calD(V)}{\psi-1}/(\gamma_n-1)=\frac{\calD(V)}{\psi-1},$$
@@ -374,12 +420,12 @@ The main theorem of this section is the following:
 
               The case of $i=1$ is of most interest. It is easy to check that the exact sequence \Cref{eq:57298} admits the following naturality:
               $$\begin{tikzcd}
-                      0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_n-1}\ar[r]\ar[d]&H^1(\calG_{K_n^{\opn{cycl}}},V)\ar[r]\ar[d,"\opn{cores}"]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n-1}\ar[r]\ar[d,"\frac{\gamma_n-1}{\gamma_{n-1}-1}"]&0\\
-                      0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_{n-1}-1}\ar[r]&H^1(\calG_{K_{n-1}^{\opn{cycl}}},V)\ar[r]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_{n-1}-1}\ar[r]&0
+                      0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_n-1}\ar[r]\ar[d]&H^1(\calG_{K_n^{\cycl}},V)\ar[r]\ar[d,"\opn{cores}"]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n-1}\ar[r]\ar[d,"\frac{\gamma_n-1}{\gamma_{n-1}-1}"]&0\\
+                      0\ar[r]&\frac{\calD(V)^{\psi=1}}{\gamma_{n-1}-1}\ar[r]&H^1(\calG_{K_{n-1}^{\cycl}},V)\ar[r]&\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_{n-1}-1}\ar[r]&0
                   \end{tikzcd}.$$
               Thus by taking the inverse limit on \Cref{eq:57298}, we get the exact sequence
               $$\begin{tikzcd}
-                      0\ar[r]&\varprojlim_n\frac{\calD(V)^{\psi-1}}{\gamma_n-1}\ar[r]&\varprojlim_n H^1(\scrG_{K_n^{\opn{cycl}}},V)\ar[r]&\varprojlim_n\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n=1}\ar[r]&0
+                      0\ar[r]&\varprojlim_n\frac{\calD(V)^{\psi-1}}{\gamma_n-1}\ar[r]&\varprojlim_n H^1(\scrG_{K_n^{\cycl}},V)\ar[r]&\varprojlim_n\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n=1}\ar[r]&0
                   \end{tikzcd}.$$
               Since $\calD(V)^{\psi=1}$ is compact, by \cite[Proposition I.5.6]{cherbonnier_theorie_1999} again we have $\calD(V)^{\psi=1}\cong\varprojlim_n \frac{\calD(V)^{\psi=1}}{\gamma_n-1}$. On the other hand, similar argument for showing $H^0_{\opn{Iw}}(K,V)=0$ shows that $\varprojlim_n\left(\frac{\calD(V)}{\psi-1}\right)^{\gamma_n=1}=0$, which implies that $\calD(V)^{\psi=1}\cong H^1_{\opn{Iw}}(K,V)$.
     \end{enumerate}
@@ -391,9 +437,9 @@ The inverse of the isomorphism \Cref{eq:43260} in \Cref{thm:15019}, which we den
         \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, there exists $b_n(y)\in \bfA\otimes V$ such that $$(\gamma_n-1)(\varphi-1)b_n(y)=(\varphi-1)y.$$
         \item For $n\geq 1$ and $y\in\calD(V)^{\psi=1}$, the map
               $$\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)$$
-              is a cocycle in $H^1(K_n^{\opn{cycl}},V)$.
+              is a cocycle in $H^1(K_n^{\cycl},V)$.
         \item The map
-              $$h_{n,V}^1:\calD(V)^{\psi=1}\lto H^1(K_n^{\opn{cycl}},V),\ y\longmapsto \frac{\log(\chi(\gamma_n))}{p^n}\left(\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)\right)$$
+              $$h_{n,V}^1:\calD(V)^{\psi=1}\lto H^1(K_n^{\cycl},V),\ y\longmapsto \frac{\log(\chi(\gamma_n))}{p^n}\left(\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)\right)$$
               does not depend on the choice of generator $\gamma_n$.
         \item The map $$\opn{Log}^*_{V^*(1)}\colon y\longmapsto \varprojlim_n h_{n,V}^1(y)$$ is an isomorphism from $\calD(V)^{\psi=1}$ to $H_{\opn{Iw}}^1(K,V)$.
     \end{enumerate}
@@ -420,36 +466,36 @@ with usual actions of $\varphi$ and $\psi$ and for $\gamma\in\Gamma$, it acts on
 
 Besides that, let us recall two results that we have learned in the lesson.
 \begin{theorem}[Coleman power series]\leavevmode\begin{enumerate}
-        \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\left(\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}\right)-\{0\}$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
+        \item (cf. \cite[Theorem 2.1.2]{coates_cyclotomic_2006}) Let $u=(u_n)_{n\geq 1}\in\left(\varprojlim_n \calO_{\bbQ_{p,n}^{\cycl}}\right)-\{0\}$, then there exists a unique power series $f_u\in\bbZ_p\llbracket T\rrbracket$ such that $f_u(\pi_n)=u_n$ for all $n\geq 1$.
         \item (cf. \cite[Lemma 2.4.5]{coates_cyclotomic_2006}, \Cref{eg:57892}) Let $\partial=(1+T)\frac{\dif}{\dif T}$. Then $\frac{\partial f_u}{f_u}(\pi)\in\left(\bfA_{\bbQ_p}^+\right)^{\psi=1}$.
     \end{enumerate}
 
 \end{theorem}
 \subsection{Input from Kummer theory}
-Recall that we set $\varepsilon=(1,\zeta_p,\cdots,\zeta_{p^n},\cdots)\in\bfE_{\bbQ_p}$. If for every $n\geq 1$, we set $\pi_n=\zeta_{p^n}-1$, then $\pi_n$ is a uniformizer of $\bbQ_{p,n}^{\opn{cycl}}$, and $\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(\pi_{n+1})=\pi_n$.
+Recall that we set $\varepsilon=(1,\zeta_p,\cdots,\zeta_{p^n},\cdots)\in\bfE_{\bbQ_p}$. If for every $n\geq 1$, we set $\pi_n=\zeta_{p^n}-1$, then $\pi_n$ is a uniformizer of $\bbQ_{p,n}^{\cycl}$, and $\calN_{\bbQ_{p,n+1}^{\cycl}/\bbQ_{p,n}^{\cycl}}(\pi_{n+1})=\pi_n$.
 
-For an element $a$ of $\bbQ_{p,n}^{\opn{cycl},\times}$, choose $x=(a,x^{(1)},\cdots,)\in\bbC_p^\flat$. This $x$ is uniquely determined by $a$ up to $\varepsilon^u$ with $u\in\bbZ_p$. Therefore, if $g\in\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$, then
-$g(x)/x=\varepsilon^{c(g)}$, with $c(g)\in\bbZ_p$. This gives a $1$-cocycle $c$ on $\scrG_{\bbQ_{p,n}^{\opn{cycl}}}$ with values in $\bbZ_p(1)$ and defines the Kummer map
-$$\kappa\colon \bbQ_{p,n}^{\opn{cycl},\times}\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+For an element $a$ of $\bbQ_{p,n}^{\cycl,\times}$, choose $x=(a,x^{(1)},\cdots,)\in\bbC_p^\flat$. This $x$ is uniquely determined by $a$ up to $\varepsilon^u$ with $u\in\bbZ_p$. Therefore, if $g\in\scrG_{\bbQ_{p,n}^{\cycl}}$, then
+$g(x)/x=\varepsilon^{c(g)}$, with $c(g)\in\bbZ_p$. This gives a $1$-cocycle $c$ on $\scrG_{\bbQ_{p,n}^{\cycl}}$ with values in $\bbZ_p(1)$ and defines the Kummer map
+$$\kappa\colon \bbQ_{p,n}^{\cycl,\times}\lto H^1\left(\scrG_{\bbQ_{p,n}^{\cycl}},\bbZ_p(1)\right).$$
 By Kummer theory, we have
-$$H^1(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1))\cong\bbZ_p\cdot\kappa(\pi_n)\oplus \kappa\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times\right).$$
+$$H^1(\scrG_{\bbQ_{p,n}^{\cycl}},\bbZ_p(1))\cong\bbZ_p\cdot\kappa(\pi_n)\oplus \kappa\left(\calO_{\bbQ_{p,n}^{\cycl}}^\times\right).$$
 On the other hand, one can verify that the diagram
 $$\begin{tikzcd}
-        \bbQ_{p,n}^{\opn{cycl},\times}\ar[r,"\kappa"]\ar[d,"\calN_{\bbQ_{p,n+1}^{\opn{cycl}}/\bbQ_{p,n+1}^{\opn{cycl}}}"]&H^1\left(\scrG_{\bbQ_{p,n+1}^{\opn{cycl}}},\bbZ_p(1)\right)\ar[d,"\opn{cores}"]\\
-        \bbQ_{p,n}^{\opn{cycl},\times}\ar[r,"\kappa"]&H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right)
+        \bbQ_{p,n}^{\cycl,\times}\ar[r,"\kappa"]\ar[d,"\calN_{\bbQ_{p,n+1}^{\cycl}/\bbQ_{p,n+1}^{\cycl}}"]&H^1\left(\scrG_{\bbQ_{p,n+1}^{\cycl}},\bbZ_p(1)\right)\ar[d,"\opn{cores}"]\\
+        \bbQ_{p,n}^{\cycl,\times}\ar[r,"\kappa"]&H^1\left(\scrG_{\bbQ_{p,n}^{\cycl}},\bbZ_p(1)\right)
     \end{tikzcd}$$
 commutes, which induces a map
-$$\kappa\colon \varprojlim_n \bbQ_{p,n}^{\opn{cycl},\times}\lto H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))$$
+$$\kappa\colon \varprojlim_n \bbQ_{p,n}^{\cycl,\times}\lto H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))$$
 and consequently an isomorphism
-$$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times\right).$$
+$$H_{\opn{Iw}}^1(\bbQ_p,\bbZ(1))=\bbZ_p\cdot\kappa(\pi_n)\oplus\kappa\left(\varprojlim_n\calO_{\bbQ_{p,n}^{\cycl}}^\times\right).$$
 
 \subsection{Main theorem}
 The main theorem of this thesis is the following:
 \begin{theorem}[{\cite[Proposition V.3.2(iii)]{cherbonnier_theorie_1999}\cite[Theorem 7.4.1]{colmez_fontaines_nodate}\cite[Theorem 6.2]{schneiderCoatesWilesHomomorphisms2016}}\protect\footnotemark]\label{thm:main}
-    \footnotetext{\cite[Theorem 6.2]{schneiderCoatesWilesHomomorphisms2016} generalizes this result to the Lubing-Tate setting.}
+    \footnotetext{\cite[Theorem 6.2]{schneiderCoatesWilesHomomorphisms2016} generalizes this result to the Lubin-Tate setting.}
     The following diagram is commutative:
     $$\begin{tikzcd}
-            \varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
+            \varprojlim_n \left(\calO_{\bbQ_{p,n}^{\cycl}}\backslash\{0\}\right)\ar[rr,"\kappa"]\ar[dr,"u\mapsto \frac{\partial f_u}{f_u}(\pi)"']&&H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\ar[dl,"\opn{Exp}^*","\cong"']\\
             &\calD(\bbZ_p(1))^{\psi=1}&
         \end{tikzcd}.$$
 \end{theorem}
@@ -459,7 +505,7 @@ The main theorem of this thesis is the following:
 \begin{remark}\label{rmk:23241}
     Let $a\geq 2$ be an integer that coprime to $p$. Recall that the element
     $$\bfc_n(a)=\frac{\exp(-a\cdot2\pi i/p^n)-1}{\exp(-2\pi i/p^n)-1}\in\bbQ(\zeta_{p^n})$$
-    is a cyclotomic unit in $\calO_{\bbQ_(\zeta_{p^n})}$ and the series $\bfc(a)=(u_n)_{n\geq 1}$ lies in $\varprojlim_n \calO_{\bbQ_{p,n}^{\opn{cycl}}}^\times$. It is easy to verify that the Coleman power series of $\bfc(a)$ is given by
+    is a cyclotomic unit in $\calO_{\bbQ(\zeta_{p^n})}$ and the series $\bfc(a)=(u_n)_{n\geq 1}$ lies in $\varprojlim_n \calO_{\bbQ_{p,n}^{\cycl}}^\times$. It is easy to verify that the Coleman power series of $\bfc(a)$ is given by
     $$f_{\bfc(a)}=\frac{(1+T)^{-a}-1}{(1+T)^{-1}-1},$$
     which satisfies
     $$\frac{\partial f_{\bfc(a)}}{f_{\bfc(a)}}=\frac{a}{(1+T)^a-1}-\frac{1}{T}.$$
@@ -473,10 +519,10 @@ The main theorem of this thesis is the following:
 
 
 \begin{proof}[Sketch of proof of \Cref{thm:main}]
-    Let $u\in\varprojlim_n \left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}\backslash\{0\}\right)$  and $g\longmapsto C_n(g)$ be the image of $u$ under the composition of
-    $$\varprojlim_n\left(\calO_{\bbQ_{p,n}^{\opn{cycl}}}-\{0\}\right)\xlto{\kappa}H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+    Let $u\in\varprojlim_n \left(\calO_{\bbQ_{p,n}^{\cycl}}\backslash\{0\}\right)$  and $g\longmapsto C_n(g)$ be the image of $u$ under the composition of
+    $$\varprojlim_n\left(\calO_{\bbQ_{p,n}^{\cycl}}-\{0\}\right)\xlto{\kappa}H_{\opn{Iw}}^1(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\cycl}},\bbZ_p(1)\right).$$
     Let $y\in\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)$, let $g\longmapsto C_n^\prime(g)$ be the image of $y$ under the composition of
-    $$\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)\xlto{\opn{Log}^*}H^1_{\opn{Iw}}(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\opn{cycl}}},\bbZ_p(1)\right).$$
+    $$\calD(\bbZ_p(1))^{\psi=1}=\bfA_{\bbQ_p}^{\psi=1}(1)\xlto{\opn{Log}^*}H^1_{\opn{Iw}}(\bbQ_p,\bbZ_p(1))\lto H^1\left(\scrG_{\bbQ_{p,n}^{\cycl}},\bbZ_p(1)\right).$$
     To prove the theorem, it is enough to show that $C_n=C_n^\prime$  for all $n$ implies $y=\frac{\partial f_u}{f_u}(\pi)$.
 
     For $C_n^\prime$, by \Cref{thm:28958} we have
@@ -489,7 +535,7 @@ The main theorem of this thesis is the following:
 
     Let $h=y-\frac{\partial f_u}{f_u}$, then $\psi(h)=h$ and consequently
     \begin{equation}\label{eq:24892}
-        p^{-k}\Tr_{\bbQ_{p,n+k}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}(h(\pi_{n+k}))=h(\pi_n).
+        p^{-k}\Tr_{\bbQ_{p,n+k}^{\cycl}/\bbQ_{p,n}^{\cycl}}(h(\pi_{n+k}))=h(\pi_n).
     \end{equation}
 
     It can be shown (cf. \cite[Proposition 7.5.2]{colmez_fontaines_nodate}) that there exists $k\in\bbZ$ and $b_n^\prime,b_n^{\prime\prime}\in\calO_{\bbC_p}/p^n$ that
@@ -503,11 +549,11 @@ The main theorem of this thesis is the following:
     $$\frac{g-1}{\gamma_n-1}x+(g-1)b=p^2(C_n^\prime(g)-C_n(g))=0.$$
 
     By \cite[Proposition 7.5.2]{colmez_fontaines_nodate}, this implies that there exists a constant $c\in\bbN$ that
-    $$p^2\frac{\log\chi(\gamma_n)}{p^n}\left(y(\pi_{n})-\frac{\partial f_u}{f_u}(\pi_n)\right)\in p^{n-c}\calO_{\bbQ_{p,n}^{\opn{cycl}}},$$
+    $$p^2\frac{\log\chi(\gamma_n)}{p^n}\left(y(\pi_{n})-\frac{\partial f_u}{f_u}(\pi_n)\right)\in p^{n-c}\calO_{\bbQ_{p,n}^{\cycl}},$$
     i.e.
-    $$h(\pi_n)\in p^{n-c-2}\calO_{\bbQ_{p,n}^{\opn{cycl}}}.$$
-    Since $p^{-k}\Tr_{\bbQ_{p,n+k}^{\opn{cycl}}/\bbQ_{p,n}^{\opn{cycl}}}\calO_{\bbQ_{p,n+k}^{\opn{cycl}}}\subset \calO_{\bbQ_{p,n}^{\opn{cycl}}}$, by \Cref{eq:24892} one obtains
-    $$h(\pi_i)=p^{-(n-i)}\Tr_{\bbQ_{p,n}^{\opn{cycl}}/\bbQ_{p,i}^{\opn{cycl}}}(h(\pi_n))\in p^{n-c-2}\calO_{\bbQ_{p,i}^{\opn{cycl}}}$$
+    $$h(\pi_n)\in p^{n-c-2}\calO_{\bbQ_{p,n}^{\cycl}}.$$
+    Since $p^{-k}\Tr_{\bbQ_{p,n+k}^{\cycl}/\bbQ_{p,n}^{\cycl}}\calO_{\bbQ_{p,n+k}^{\cycl}}\subset \calO_{\bbQ_{p,n}^{\cycl}}$, by \Cref{eq:24892} one obtains
+    $$h(\pi_i)=p^{-(n-i)}\Tr_{\bbQ_{p,n}^{\cycl}/\bbQ_{p,i}^{\cycl}}(h(\pi_n))\in p^{n-c-2}\calO_{\bbQ_{p,i}^{\cycl}}$$
     for all $i\geq 0$ and $n\geq i$. This implies that $h(\pi_i)=0$ for all $i\geq 0$ and hence $h=0$.
 \end{proof}
 \printbibliography
