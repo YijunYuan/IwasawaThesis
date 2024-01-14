@@ -1,10 +1,10 @@
 % !TEX root
-% !TEX program = xelatex
+% !TEX program = pdflatex
 % !BIB program = biber
 
 %\special{dvipdfmx:config z 0}
 \documentclass[a4paper,oneside]{amsart}
-%\usepackage[scheme=plain]{ctex}
+\usepackage[scheme=plain,fontset=ubuntu]{ctex}
 % *%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Fonts, symbols and notations
 \let\opn\operatorname
@@ -133,22 +133,22 @@ The construction of $(\varphi,\Gamma)$-modules depends deeply on the so-called f
 
 In this thesis, we do not need the full power of sAPF extensions (which we will not recall the precise definition), so we are going to specialize Fontaine-Wintenberger's results to the cyclotomic extension $K^{\cycl}/K$ while keeping the fact in mind that it is sAPF\footnote{This is based on a result of Sen (cf. \cite{sen_ramification_1972}): if a totally ramified $p$-adic normal extension $K_\infty/K$ has a $p$-adic Lie group as its Galois group, then it is sAPF.}.
 \begin{definition}[{\cite[Section 2.1.1]{wintenberger_corps_1983}}]
-    Let $$X_K(K^{\cycl})\coloneqq\varprojlim_n K_n^{\cycl,\times}\cup\{0\},$$
-    where the transition map $\calN_n:K_{n+1}^{\cycl,\times}\lto \left(K_n^{\cycl}\right)^\times$ is the norm map. We call it the field of norms of the extension $K^{\cycl}/K$.
+    Let $$X_K\left(K^{\cycl}\right)\coloneqq\varprojlim_n K_n^{\cycl,\times}\cup\{0\},$$
+    where the transition map $\calN_n\colon K_{n+1}^{\cycl,\times}\lto K_n^{\cycl,\times}$ is the norm map. We call it the field of norms of the extension $K^{\cycl}/K$.
 \end{definition}
 \begin{theorem}[Fontaine-Wintenberger]\leavevmode
     \begin{enumerate}
         \item (cf. \cite[Th\'eor\`eme 2.1.3]{wintenberger_corps_1983}) By defining
               $$(x_n)_{n\geq 0}+(y_n)_{n\geq 0}\coloneqq \left(\lim_{j\to +\infty}\calN_{\bbQ_{p,n+j}^{\cycl}/\bbQ_{p,n}^{\cycl}}(x_{n+j}+y_{n+j})\right)_{n\geq 0}$$
-              and componentwise multiplication, $X_K(K^{\cycl})$ is a complete discrete valued field with valuation given by
+              and componentwise multiplication, $X_K\left(K^{\cycl}\right)$ is a complete discrete valued field with valuation given by
               $$v((x_n)_{n\geq 1})=[v_p(K^\times):\bbZ]\cdot v_p(x_0).$$
-        \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K(K^{\cycl})$ is canonically isomorphic to $H_K$.
-        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K(K^{\cycl})$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$.
-        \item The field $X_K(K^{\cycl})$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
+        \item (cf. \cite[Corollaire 3.2.3]{wintenberger_corps_1983}) The absolute Galois group of $X_K\left(K^{\cycl}\right)$ is canonically isomorphic to $H_K$.
+        \item (cf. \cite[Proposition 4.2.1]{wintenberger_corps_1983}) The field $X_K\left(K^{\cycl}\right)$ embeds continuously into the perfectoid field $\widetilde{\bfE}=\bbC_p^\flat\coloneqq \varprojlim_{x\mapsto x^p}\bbC_p$.
+        \item The field $X_K\left(K^{\cycl}\right)$ is naturally equipped with the action of Frobenius map $x\mapsto x^p$ and the Galois group $\Gamma_K$.
     \end{enumerate}
 \end{theorem}
 \begin{definition}
-    Let $\bfE_K$ be the image of $X_K(K^{\cycl})$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
+    Let $\bfE_K$ be the image of $X_K\left(K^{\cycl}\right)$ in $\widetilde{\bfE}$. Set $\bfE=\bigcup_{[K:\bbQ_p]<\infty}\bfE_K$ and $\widetilde{\bfE}_K=\widetilde{\bfE}^{H_K}$.
 \end{definition}
 \begin{remark}
     With easy calculation, one can see that the element $\varepsilon-1$, where $\varepsilon=(\zeta_{p^n})_{n\geq 1}\in \varprojlim_{x\mapsto x^p}\calO_{\bbC_p}$, is a uniformizer of $\bfE_{\bbQ_p}$.
@@ -175,7 +175,7 @@ We have the following properties of these period rings of characteristic $0$. Mo
               $$\bfA_{\bbQ_p}=\widehat{\bbZ_p\llbracket\pi\rrbracket[\frac{1}{\pi}]},$$
               where $\pi\coloneqq [\varepsilon]-1$ and the hat is taking the $p$-adic completion.
         \item The action of $\scrG_{\bbQ_p}$ on $\bfA_{\bbQ_p}$ is given by
-              $$g\cdot\pi=(1+\pi)^{\chi(g)}-1,$$ where $\chi:\scrG_{\bbQ_p}\lto \bbZ_p^\times$ is the cyclotomic character. The action of the Frobenius map $\varphi$ on $\bfA_{\bbQ_p}$ is given by
+              $$g\cdot\pi=(1+\pi)^{\chi(g)}-1,$$ where $\chi\colon\scrG_{\bbQ_p}\lto \bbZ_p^\times$ is the cyclotomic character. The action of the Frobenius map $\varphi$ on $\bfA_{\bbQ_p}$ is given by
               $$\varphi(\pi)=(1+\pi)^p-1.$$
         \item One has $\bfA^{H_K}=\bfA_K$, $\bfB^{H_K}=\bfB_K$.
         \item The field $\widetilde{\bfB}$ (resp. $\widetilde{\bfB}_K$) is the completed $\varphi$-perfection of $\bfB$ (resp. $\bfB_K$).
@@ -212,7 +212,7 @@ By \Cref{thm:44873}, it is not hard to get the following important result:
 Since we have established the equivalence of categories in \Cref{thm:24308}, it is natural to use the \'etale $(\varphi,\Gamma)$-modules to recover the information of the $p$-adic Galois representations. For example, we can use \'etale $(\varphi,\Gamma)$-modules to calculate the Galois cohomology. This is discovered by Herr:
 \begin{theorem}[{\cite[Th\'eor\`eme 2.1]{herr_sur_1998}}]\label{thm:12830}
     Let $\gamma$ be a topological generator of $\Gamma_K$. For any \'etale $(\varphi,\Gamma)$-modules $D$ over $\bfA_{K}$ (resp. $\bfB_K$). Define the complex
-    $$\calC_{\varphi,\gamma}(D):\begin{tikzcd}[sep=huge, ampersand replacement=\&]
+    $$\calC_{\varphi,\gamma}(D)\colon\begin{tikzcd}[sep=huge, ampersand replacement=\&]
             0\ar[r]\&D\ar[r,"\begin{pmatrix}
                     \varphi-1 \\\gamma-1
                 \end{pmatrix}"]\&D\oplus D\ar[r,"{\begin{pmatrix}
@@ -233,7 +233,7 @@ The following lemma follows from \cite[Theorem 29.2]{matsumura_commutative_1987}
 \end{lemma}
 \begin{definition}
     The $\psi$-operator on the period ring $\bfA$ is defined as:
-    $$\psi:\bfA\lto\bfA,\ x\longmapsto \frac{1}{p}\varphi^{-1}(\Tr_{\bfA/\varphi(\bfA)}(x)).$$
+    $$\psi\colon\bfA\lto\bfA,\ x\longmapsto \frac{1}{p}\varphi^{-1}(\Tr_{\bfA/\varphi(\bfA)}(x)).$$
     By restricting this operator to $\bfA_K$, we get the $\psi$-operator on $\bfA_K$.
 \end{definition}
 One can easily verify the following properties of the $\psi$-operator:
@@ -247,7 +247,7 @@ One can easily verify the following properties of the $\psi$-operator:
 
 It is natural to generalize the $\psi$-operator to \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$:
 \begin{lemma}
-    If $D$ is an \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$, there exists a unique operator $\psi:D\lto D$, satisfying that for every $a\in\bfA_K$ and $x\in D$,
+    If $D$ is an \'etale $(\varphi,\Gamma)$-modules over $\bfA_K$, there exists a unique operator $\psi\colon D\lto D$, satisfying that for every $a\in\bfA_K$ and $x\in D$,
     $$\psi(\varphi(a)x)=a\psi(x),\ \psi(a\varphi(x))=\psi(a)x.$$ Moreover, $\psi$ commutes with $\Gamma_K$.
 \end{lemma}
 \begin{proof}
@@ -331,10 +331,10 @@ The main theorem of this section is the following:
 
               By replacing $\varphi$ in Herr's complex with $\psi$, we obtain a new complex $\calC_{\psi,\gamma}(D)$ with a morphism:
               $$\begin{tikzcd}[sep=huge, ampersand replacement=\&]
-                      \calC_{\varphi,\gamma}(D):\&0\ar[r]\&D\ar[r]\ar[d,equal]\&D\oplus D\ar[r]\ar[d,"{\begin{psmallmatrix}
+                      \calC_{\varphi,\gamma}(D)\colon\&0\ar[r]\&D\ar[r]\ar[d,equal]\&D\oplus D\ar[r]\ar[d,"{\begin{psmallmatrix}
                           -\psi & 0\\0&\id
                       \end{psmallmatrix}}"]\& D\ar[r]\ar[d,"-\psi"]\&0\\
-                      \calC_{\psi,\gamma}(D):\&0\ar[r]\&D\ar[r,"\begin{psmallmatrix}
+                      \calC_{\psi,\gamma}(D)\colon\&0\ar[r]\&D\ar[r,"\begin{psmallmatrix}
                               \psi-1 \\\gamma-1
                           \end{psmallmatrix}"']\&D\oplus D\ar[r,"{\begin{psmallmatrix}
                           \gamma-1 & 1-\psi
@@ -391,7 +391,7 @@ The inverse of the isomorphism \Cref{eq:43260} in \Cref{thm:15019}, which we den
               $$\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)$$
               is a cocycle in $H^1(K_n^{\cycl},V)$.
         \item The map
-              $$h_{n,V}^1:\calD(V)^{\psi=1}\lto H^1(K_n^{\cycl},V),\ y\longmapsto \frac{\log(\chi(\gamma_n))}{p^n}\left(\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)\right)$$
+              $$h_{n,V}^1\colon\calD(V)^{\psi=1}\lto H^1(K_n^{\cycl},V),\ y\longmapsto \frac{\log(\chi(\gamma_n))}{p^n}\left(\sigma\longmapsto \frac{\sigma-1}{\gamma_n-1}y-(\sigma-1)b_n(y)\right)$$
               does not depend on the choice of generator $\gamma_n$.
         \item The map $$\opn{Log}^*\colon y\longmapsto \varprojlim_n h_{n,V}^1(y)$$ is an isomorphism from $\calD(V)^{\psi=1}$ to $H_{\Iw}^1(K,V)$.
     \end{enumerate}
